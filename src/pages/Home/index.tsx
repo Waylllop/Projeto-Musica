@@ -33,13 +33,13 @@ const Home = () => {
 
   return (
     <>
-      <div className=" flex flex-col gap-8 bg-dark text-8xl font-coustard text-primary pl-[30%] pt-10 pb-20">
+      <div className=" flex flex-col gap-8 bg-dark text-6xl font-coustard text-primary pl-[30%] pt-10 pb-16">
         <h1>yLLop</h1>
         <h1>Music &</h1>
         <h1>Synthesis</h1>
       </div>
 
-      <section className="flex justify-center">
+      <section className="flex justify-center mt-20">
         <p className="text-3xl text-darkColor w-[1000px]">
           Music producer, synthesis and sound designer, focused on electronic stuff. Based in São Paulo. Available for
           remote-friendly freelance work.
