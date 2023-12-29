@@ -1,13 +1,37 @@
+import { gql, useQuery } from "@apollo/client";
+
+// GraphQL query
+const GET_SONGS_QUERY = gql`
+  query GetSongs {
+    songs {
+      album
+      artist
+      genre
+      id
+      playtime
+      soundcloudUrl
+      title
+      type
+      webUrl
+      youtubeUrl
+      spotifyUrl
+      musicUrl
+      artworkUrl
+    }
+  }
+`;
+
 const Home = () => {
+  // const { loading, error, data } = useQuery(GET_SONGS_QUERY);
+
+  // if (loading) return <p>Loading...</p>;
+  // if (error) return <p>Error</p>;
+
+  // console.log(data);
+
   return (
     <div>
       <h1>Musica</h1>
-      <img
-        style={{ width: 600, height: 600 }}
-        src="https://waylllop.github.io/MusicasMp3/into-the-void-EP/Cover-VOID.png"
-        alt="VOID"
-      ></img>
-      <audio src="https://waylllop.github.io/MusicasMp3/into-the-void-EP/Kimochi.mp3" controls></audio>
     </div>
   );
 };
