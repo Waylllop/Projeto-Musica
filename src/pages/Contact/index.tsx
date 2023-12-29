@@ -21,26 +21,34 @@ const Contact = () => {
         </div>
 
         <div className="col-start-4 col-end-6 flex flex-col text-2xl">
-          <a
-            href="https://open.spotify.com/artist/3xVMQnRMwi2bL5pzSpBL0H?si=lBFdneLySYaKDS4CbwKlYw"
-            target="_blank"
-            className="font-bold underline hover:text-secondary"
-          >
-            Spotify
-          </a>
-          <a
-            href="https://www.youtube.com/@yllopmusic6770"
-            target="_blank"
-            className="font-bold underline hover:text-secondary"
-          >
-            Youtube
-          </a>
-          <a href="https://soundcloud.com/yllop" target="_blank" className="font-bold underline hover:text-secondary">
-            Soundcloud
-          </a>
-          <a href="#" className="font-bold underline hover:text-secondary">
-            Curruculum
-          </a>
+          <span>
+            <a
+              href="https://open.spotify.com/artist/3xVMQnRMwi2bL5pzSpBL0H?si=lBFdneLySYaKDS4CbwKlYw"
+              target="_blank"
+              className="font-bold underline hover:text-secondary"
+            >
+              Spotify
+            </a>
+          </span>
+          <span>
+            <a
+              href="https://www.youtube.com/@yllopmusic6770"
+              target="_blank"
+              className="font-bold underline hover:text-secondary"
+            >
+              Youtube
+            </a>
+          </span>
+          <span>
+            <a href="https://soundcloud.com/yllop" target="_blank" className="font-bold underline hover:text-secondary">
+              Soundcloud
+            </a>
+          </span>
+          <span>
+            <a href="#" className="font-bold underline hover:text-secondary">
+              Curruculum
+            </a>
+          </span>
         </div>
       </div>
     </section>
