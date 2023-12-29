@@ -2,7 +2,7 @@ import { SoundcloudLogo, SpotifyLogo, YoutubeLogo } from "@phosphor-icons/react"
 
 const Footer = () => {
   return (
-    <footer className="bg-neutral-800 p-8 flex justify-between">
+    <footer className="bg-dark p-8 flex justify-between px-16">
       <h1 className="text-3xl font-bold text-white">Yllop©2023</h1>
       <div>
         <ul className="text-white text-lg flex gap-4">
