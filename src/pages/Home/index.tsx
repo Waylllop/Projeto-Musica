@@ -1,25 +1,25 @@
-import { gql, useQuery } from "@apollo/client";
+// import { gql, useQuery } from "@apollo/client";
 
 // GraphQL query
-const GET_SONGS_QUERY = gql`
-  query GetSongs {
-    songs {
-      album
-      artist
-      genre
-      id
-      playtime
-      soundcloudUrl
-      title
-      type
-      webUrl
-      youtubeUrl
-      spotifyUrl
-      musicUrl
-      artworkUrl
-    }
-  }
-`;
+// const GET_SONGS_QUERY = gql`
+//   query GetSongs {
+//     songs {
+//       album
+//       artist
+//       genre
+//       id
+//       playtime
+//       soundcloudUrl
+//       title
+//       type
+//       webUrl
+//       youtubeUrl
+//       spotifyUrl
+//       musicUrl
+//       artworkUrl
+//     }
+//   }
+// `;
 
 const Home = () => {
   // const { loading, error, data } = useQuery(GET_SONGS_QUERY);
