@@ -3,8 +3,8 @@ const Contact = () => {
     <section id="contact" className="scroll-smooth mx-16 mt-20 border-t-4 border-dark pb-20">
       <h1 className="mt-10 text-5xl font-bold mb-10">Contact</h1>
       <h2 className="text-6xl font-bold mb-10">Have some idea in mind?</h2>
-      <div className="grid grid-cols-5 gap-10">
-        <div className="text-dark text-2xl flex flex-col gap-10 col-start-1 col-end-4">
+      <div className="grid grid-cols-[minmax(500px,50%)_1fr] gap-40">
+        <div className="text-dark text-2xl flex flex-col gap-10">
           <p>
             You can send details about your project directly to{" "}
             <a href="mailto:yllopmusic@gmail.com." className="font-bold underline hover:text-secondary">
@@ -20,7 +20,7 @@ const Contact = () => {
           <p>Currently based in São Paulo, Brazil — available for remote-friendly work.</p>
         </div>
 
-        <div className="col-start-4 col-end-6 flex flex-col text-2xl">
+        <div className="flex flex-col text-2xl">
           <span>
             <a
               href="https://open.spotify.com/artist/3xVMQnRMwi2bL5pzSpBL0H?si=lBFdneLySYaKDS4CbwKlYw"
