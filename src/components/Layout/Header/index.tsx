@@ -18,7 +18,7 @@ const Header = () => {
             <NavLink
               to="/home"
               className={({ isActive }) =>
-                isActive ? "text-orange-500 duration-200" : "hover:text-orange-300 duration-200"
+                isActive ? "text-primary duration-200" : "hover:text-[#fcc46a] duration-200"
               }
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             >
@@ -29,7 +29,7 @@ const Header = () => {
             <NavLink
               to="/songs"
               className={({ isActive }) =>
-                isActive ? "text-orange-500 duration-200" : "hover:text-orange-300 duration-200"
+                isActive ? "text-primary duration-200" : "hover:text-[#fcc46a] duration-200"
               }
             >
               Songs
@@ -42,7 +42,7 @@ const Header = () => {
               smooth={true}
               offset={-100}
               duration={500}
-              className="cursor-pointer hover:text-orange-300"
+              className="cursor-pointer hover:text-[#fcc46a]"
             >
               Work
             </ScrollLink>
@@ -54,7 +54,7 @@ const Header = () => {
               smooth={true}
               offset={-100}
               duration={500}
-              className="cursor-pointer hover:text-orange-300"
+              className="cursor-pointer hover:text-[#fcc46a]"
             >
               About
             </ScrollLink>
@@ -66,7 +66,7 @@ const Header = () => {
               smooth={true}
               offset={-100}
               duration={500}
-              className="cursor-pointer hover:text-orange-300"
+              className="cursor-pointer hover:text-[#fcc46a]"
             >
               Contact
             </ScrollLink>
