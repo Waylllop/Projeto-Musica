@@ -1,26 +1,35 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { ApolloClient, InMemoryCache, createHttpLink, ApolloProvider } from "@apollo/client";
-import { setContext } from "@apollo/client/link/context";
+// import { setContext } from "@apollo/client/link/context";
 import Home from "./pages/Home";
 import Layout from "./components/Layout";
 import Songs from "./pages/Songs";
 
-const httpLink = createHttpLink({
-  uri: `${import.meta.env.VITE_HOST}`,
-});
+// const httpLink = createHttpLink({
+//   uri: `${import.meta.env.VITE_HOST}`,
+// });
 
-const authLink = setContext((_, { headers }) => {
-  const token = `${import.meta.env.VITE_PERMANENT_AUTH_TOKEN}`;
-  return {
-    headers: {
-      ...headers,
-      authorization: token ? `Bearer ${token}` : "",
-    },
-  };
+// const authLink = setContext((_, { headers }) => {
+//   const token = `${import.meta.env.VITE_PERMANENT_AUTH_TOKEN}`;
+//   return {
+//     headers: {
+//       ...headers,
+//       authorization: token ? `Bearer ${token}` : "",
+//     },
+//   };
+// });
+
+// const client = new ApolloClient({
+//   link: authLink.concat(httpLink),
+//   cache: new InMemoryCache(),
+// });
+
+const httpLink = createHttpLink({
+  uri: "https://api-sa-east-1.hygraph.com/v2/clqpoqfjy1ux101un6a2w61pa/master",
 });
 
 const client = new ApolloClient({
-  link: authLink.concat(httpLink),
+  link: httpLink,
   cache: new InMemoryCache(),
 });
 
