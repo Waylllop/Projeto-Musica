@@ -3,11 +3,11 @@ import Header from "./Header";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <>
+    <div className="bg-dark">
       <Header />
-      <main className="bg-bgLight min-h-screen pt-16">{children}</main>
+      <main className="bg-bgLight rounded-[48px]">{children}</main>
       <Footer />
-    </>
+    </div>
   );
 };
 

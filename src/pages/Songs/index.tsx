@@ -1,5 +1,5 @@
 const Songs = () => {
-  return <div>Songs</div>;
+  return <section className="min-h-screen"></section>;
 };
 
 export default Songs;

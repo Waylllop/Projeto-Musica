@@ -46,7 +46,7 @@ const Contact = () => {
           </span>
           <span>
             <a href="#" className="font-bold underline hover:text-secondary">
-              Curruculum
+              Curriculum
             </a>
           </span>
         </div>

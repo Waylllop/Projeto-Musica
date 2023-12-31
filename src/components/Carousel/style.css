@@ -1,0 +1,33 @@
+.swiper {
+  width: 100%;
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 400px;
+  height: 550px;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+}
+
+.swiper-3d .swiper-slide-shadow-left {
+  background-image: none;
+}
+
+.swiper-3d .swiper-slide-shadow-right {
+  background-image: none;
+}
+
+.swiper-button-next {
+  color: red;
+  top: 90%;
+}
+
+.swiper-button-prev {
+  color: red;
+  top: 90%;
+}
