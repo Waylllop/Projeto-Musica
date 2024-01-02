@@ -1,4 +1,8 @@
 import { Swiper, SwiperSlide } from "swiper/react";
+import { useContext, useState } from "react";
+import { SongContext } from "../../context/SongContext";
+import { PlayCircle } from "@phosphor-icons/react";
+
 import { EffectCoverflow, Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
@@ -13,6 +17,13 @@ interface CarouselProps {
 }
 
 const Carousel = ({ songs, setActiveSong }: CarouselProps) => {
+  const [showIcon, setShowIcon] = useState(false);
+  const context = useContext(SongContext);
+  if (!context) {
+    throw new Error("useSong must be used within a SongProvider");
+  }
+  const { setSong } = context;
+
   return (
     <Swiper
       effect={"coverflow"}
@@ -39,12 +50,22 @@ const Carousel = ({ songs, setActiveSong }: CarouselProps) => {
           {({ isActive }) => (
             <div>
               {isActive ? (
-                <div className="flex items-center">
+                <div
+                  onClick={() => setSong(song)}
+                  className="cursor-pointer flex items-center justify-center relative"
+                  onMouseEnter={() => setShowIcon(true)}
+                  onMouseLeave={() => setShowIcon(false)}
+                >
                   <img
                     src={song.artworkUrl}
                     alt={song.title}
                     className="rounded-[48px] h-[400px] w-[400px] brightness-100 duration-1000 object-cover"
                   />
+                  {showIcon ? (
+                    <div className="absolute bg-light rounded-full opacity-90">
+                      <PlayCircle size={200} className="text-primary" />
+                    </div>
+                  ) : null}
                 </div>
               ) : (
                 <div className=" flex items-center">

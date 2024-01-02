@@ -8,7 +8,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       <Header />
       <main className="bg-light rounded-[48px]">{children}</main>
       <Footer />
-      <div className="flex justify-center fixed left-0 bottom-0 w-[calc(100vw-80px)] z-20 ml-10">
+      <div className="flex justify-center fixed left-0 bottom-0 w-[calc(100vw-86px)] z-20 ml-10">
         <Player />
       </div>
     </div>

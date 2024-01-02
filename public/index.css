@@ -4,12 +4,12 @@
 
 html {
   font-family: Cabin, sans-serif;
-  color: #1B2021;
+  color: #1b2021;
 }
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: #FBB13C;
+  scrollbar-color: #fbb13c;
 }
 
 /* Chrome, Edge, and Safari */
@@ -18,15 +18,19 @@ html {
 }
 
 *::-webkit-scrollbar-track {
-  background: #D1DEDE;
+  background: #d9d9d9;
   border-radius: 5px;
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: #FBB13C;
+  background-color: #fbb13c;
   /* border-radius: 14px; */
 }
 
-/* .scrollable-content::-webkit-scrollbar {
-  display: none;
-} */
+.scroll-custom {
+  scrollbar-color: #1b2021;
+}
+
+.scroll-custom::-webkit-scrollbar-thumb {
+  background-color: #1b2021;
+}

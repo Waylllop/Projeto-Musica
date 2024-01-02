@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { gql, useQuery } from "@apollo/client";
-import Carousel from "../../components/Carousel";
+import { SongContext } from "../../context/SongContext";
 import { song } from "../../common/interfices";
+import Carousel from "../../components/Carousel";
 
 const GET_SONGS_QUERY = gql`
   query GetSongs {
@@ -20,6 +21,11 @@ const GET_SONGS_QUERY = gql`
 `;
 
 const Release = () => {
+  const context = useContext(SongContext);
+  if (!context) {
+    throw new Error("useSong must be used within a SongProvider");
+  }
+  const { song, setSong } = context;
   const [activeSong, setActiveSong] = useState<song | null>(null);
   const { loading, error, data } = useQuery(GET_SONGS_QUERY);
 
@@ -28,6 +34,14 @@ const Release = () => {
       setActiveSong(data.songs[0]);
     }
   }, [data]);
+
+  useEffect(() => {
+    if (data) {
+      if (song.title === "") {
+        setSong(data.songs[0]);
+      }
+    }
+  }, [data, setSong, song]);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error</p>;

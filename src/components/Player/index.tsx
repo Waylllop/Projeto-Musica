@@ -9,7 +9,7 @@ const Player = () => {
   }
   const { song } = context;
 
-  return <ReactPlayer url={song.musicUrl} playing controls width="100%" height="50px" />;
+  return <ReactPlayer url={song.musicUrl} playing controls width="100%" height="50px" volume={0.2} />;
 };
 
 export default Player;

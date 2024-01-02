@@ -1,5 +1,7 @@
 import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import { song } from "../../common/interfices";
+import { PlayCircle } from "@phosphor-icons/react";
+import { useState } from "react";
 
 interface TableProps {
   songs: song[];
@@ -7,25 +9,31 @@ interface TableProps {
 }
 
 const Table = ({ songs, setSong }: TableProps) => {
+  const [showIconId, setShowIconId] = useState<string>("");
   const columnHelper = createColumnHelper<song>();
 
   const columns = [
     columnHelper.accessor("artworkUrl", {
       cell: (info) => (
-        <button onClick={() => setSong(info.row.original)}>
+        <div className="flex items-center justify-center relative">
           <img
-            className="w-20 h-20 object-cover rounded-xl mb-2"
+            className="w-20 h-20 object-cover rounded-xl m-2"
             src={info.getValue()}
             alt={`${info.row.original.title}`}
           />
-        </button>
+          {showIconId === info.row.original.id ? (
+            <div className="absolute bg-light rounded-full opacity-90">
+              <PlayCircle size={48} className="text-primary" />
+            </div>
+          ) : null}
+        </div>
       ),
       header: "",
     }),
 
     columnHelper.accessor("title", {
       cell: (info) => (
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 mt-2">
           <span className="text-2xl">{info.getValue()}</span>
           <span>{`${info.row.original.artist}`}</span>
         </div>
@@ -34,22 +42,22 @@ const Table = ({ songs, setSong }: TableProps) => {
     }),
 
     columnHelper.accessor("genre", {
-      cell: (info) => info.getValue(),
+      cell: (info) => <span className="mt-2 block">{info.getValue()}</span>,
       header: "Genre",
     }),
 
     columnHelper.accessor("album", {
-      cell: (info) => info.getValue(),
+      cell: (info) => <span className="mt-2 block">{info.getValue()}</span>,
       header: "Album",
     }),
 
     columnHelper.accessor("type", {
-      cell: (info) => info.getValue(),
+      cell: (info) => <span className="mt-2 block">{info.getValue()}</span>,
       header: "Type",
     }),
 
     columnHelper.accessor("playtime", {
-      cell: (info) => info.getValue(),
+      cell: (info) => <span className="mt-2 block">{info.getValue()}</span>,
       header: "Playtime",
     }),
 
@@ -67,11 +75,11 @@ const Table = ({ songs, setSong }: TableProps) => {
 
   return (
     <table className="w-full">
-      <thead className="sticky top-0 bg-dark">
+      <thead>
         {table.getHeaderGroups().map((headerGroup) => (
           <tr key={headerGroup.id}>
             {headerGroup.headers.map((header) => (
-              <th key={header.id} className="text-light text-left border-b-[4px] border-transparent">
+              <th key={header.id} className="text-dark text-left border-b-[3px] border-dark">
                 {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
               </th>
             ))}
@@ -80,7 +88,13 @@ const Table = ({ songs, setSong }: TableProps) => {
       </thead>
       <tbody>
         {table.getRowModel().rows.map((row) => (
-          <tr key={row.id}>
+          <tr
+            key={row.id}
+            onClick={() => setSong(row.original)}
+            onMouseEnter={() => setShowIconId(row.original.id)}
+            onMouseLeave={() => setShowIconId("")}
+            className="cursor-pointer hover:bg-[#C3C3C3] duration-500"
+          >
             {row.getVisibleCells().map((cell) => (
               <td className="align-top" key={cell.id}>
                 {flexRender(cell.column.columnDef.cell, cell.getContext())}
