@@ -1,12 +1,11 @@
-import { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { SongContext } from "../../context/SongContext";
 import { gql, useQuery } from "@apollo/client";
-import Carousel from "../../components/Carousel";
-import { song } from "../../common/interfices";
+import Table from "../../components/Table";
 
 const GET_SONGS_QUERY = gql`
   query GetSongs {
-    songs(first: 5, orderBy: createdAt_DESC) {
+    songs(first: 20, orderBy: createdAt_DESC) {
       id
       album
       artist
@@ -25,56 +24,25 @@ const GET_SONGS_QUERY = gql`
 `;
 
 const Work = () => {
-  const [activeSong, setActiveSong] = useState<song | null>(null);
+  const context = useContext(SongContext);
+  if (!context) {
+    throw new Error("useSong must be used within a SongProvider");
+  }
+  const { setSong } = context;
   const { loading, error, data } = useQuery(GET_SONGS_QUERY);
-
-  useEffect(() => {
-    if (data) {
-      setActiveSong(data.songs[0]);
-    }
-  }, [data]);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error</p>;
 
   return (
-    <section id="work" className="scroll-smooth mx-16 mt-20 border-t-4 border-dark">
-      <h1 className="my-10 text-5xl font-bold">Work</h1>
-      <div className="grid grid-cols-[minmax(200px,30%)_1fr]">
-        <div className="flex flex-col justify-between">
-          <div className="flex flex-col gap-4">
-            <div>
-              <p className="text-2xl text-secondary mb-[-10px]">Tiitle</p>
-              <p className="text-4xl text-dark">{activeSong?.title}</p>
-            </div>
-            <div>
-              <p className="text-2xl text-secondary mb-[-10px]">Genre</p>
-              <p className="text-4xl text-dark">{activeSong?.genre}</p>
-            </div>
-            <div>
-              <p className="text-2xl text-secondary mb-[-10px]">Artist</p>
-              <p className="text-4xl text-dark">{activeSong?.artist}</p>
-            </div>
-            <div>
-              <p className="text-2xl text-secondary mb-[-10px]">Album</p>
-              <p className="text-4xl text-dark">{activeSong?.album}</p>
-            </div>
-          </div>
-
-          <NavLink
-            to="/songs"
-            className={({ isActive }) =>
-              `font-coustard text-dark text-4xl underline ${
-                isActive ? "duration-200" : "hover:text-[#895B1E] duration-200]"
-              }`
-            }
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          >
-            See More
-          </NavLink>
+    <section className="mx-16 py-10">
+      <h1 className="text-5xl mb-10 font-bold">Take a listen</h1>
+      <div className="grid grid-cols-[minmax(200px,70%)_1fr]">
+        <div className="w- max-h-[calc(100vh-352px)] overflow-auto">
+          <Table songs={data.songs} setSong={setSong}/>
         </div>
 
-        <Carousel songs={data.songs} setActiveSong={setActiveSong} />
+        <div>filtros</div>
       </div>
     </section>
   );

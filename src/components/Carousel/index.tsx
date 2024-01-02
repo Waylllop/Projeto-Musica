@@ -39,12 +39,20 @@ const Carousel = ({ songs, setActiveSong }: CarouselProps) => {
           {({ isActive }) => (
             <div>
               {isActive ? (
-                <div className="h-[400px] flex items-center">
-                  <img src={song.artworkUrl} alt={song.title} className="rounded-[48px] brightness-100 duration-1000" />
+                <div className="flex items-center">
+                  <img
+                    src={song.artworkUrl}
+                    alt={song.title}
+                    className="rounded-[48px] h-[400px] w-[400px] brightness-100 duration-1000 object-cover"
+                  />
                 </div>
               ) : (
-                <div className="h-[400px] flex items-center">
-                  <img src={song.artworkUrl} alt={song.title} className="rounded-[48px] brightness-50 duration-500" />
+                <div className=" flex items-center">
+                  <img
+                    src={song.artworkUrl}
+                    alt={song.title}
+                    className="rounded-[48px] h-[400px] w-[400px] brightness-50 duration-500 object-cover"
+                  />
                 </div>
               )}
             </div>

@@ -4,4 +4,29 @@
 
 html {
   font-family: Cabin, sans-serif;
+  color: #1B2021;
 }
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #FBB13C;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #D1DEDE;
+  border-radius: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #FBB13C;
+  /* border-radius: 14px; */
+}
+
+/* .scrollable-content::-webkit-scrollbar {
+  display: none;
+} */

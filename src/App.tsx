@@ -1,9 +1,11 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { ApolloClient, InMemoryCache, createHttpLink, ApolloProvider } from "@apollo/client";
+import { SongProvider } from "./context/SongContext";
 // import { setContext } from "@apollo/client/link/context";
+
 import Home from "./pages/Home";
 import Layout from "./components/Layout";
-import Songs from "./pages/Songs";
+import Work from "./pages/Work";
 
 // const httpLink = createHttpLink({
 //   uri: `${import.meta.env.VITE_HOST}`,
@@ -37,13 +39,15 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<Navigate to="/home" />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/songs" element={<Songs />} />
-          </Routes>
-        </Layout>
+        <SongProvider>
+          <Layout>
+            <Routes>
+              <Route path="/" element={<Navigate to="/home" />} />
+              <Route path="/home" element={<Home />} />
+              <Route path="/work" element={<Work />} />
+            </Routes>
+          </Layout>
+        </SongProvider>
       </Router>
     </ApolloProvider>
   );

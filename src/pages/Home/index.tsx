@@ -1,6 +1,6 @@
 import About from "../About";
 import Contact from "../Contact";
-import Work from "../Work";
+import Work from "../Releases";
 
 const Home = () => {
   return (

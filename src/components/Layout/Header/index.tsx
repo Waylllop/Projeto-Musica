@@ -7,7 +7,7 @@ const Header = () => {
   const [isSongsOpen, setIsSongsOpen] = useState(false);
 
   useEffect(() => {
-    if (location.pathname === "/songs") {
+    if (location.pathname === "/work") {
       setIsSongsOpen(true);
     } else {
       setIsSongsOpen(false);
@@ -16,7 +16,9 @@ const Header = () => {
 
   return (
     <>
-      <div className={`bg-dark flex justify-between px-16 py-4 ${isSongsOpen ? "" : "fixed w-full z-20"}`}>
+      <div
+        className={`bg-dark flex justify-between px-16 py-4 ${isSongsOpen ? "" : "fixed w-[calc(100vw-80px)] z-20"}`}
+      >
         <NavLink
           to="/home"
           className={({ isActive }) =>
@@ -39,20 +41,19 @@ const Header = () => {
                 Home
               </NavLink>
             </li>
+            <li>
+              <NavLink
+                to="/work"
+                className={({ isActive }) =>
+                  isActive ? "text-primary duration-200" : "hover:text-[#fcc46a] duration-200"
+                }
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              >
+                Work
+              </NavLink>
+            </li>
             {!isSongsOpen ? (
               <>
-                <li>
-                  <ScrollLink
-                    to="work"
-                    spy={true}
-                    smooth={true}
-                    offset={-100}
-                    duration={1000}
-                    className="cursor-pointer hover:text-[#fcc46a]"
-                  >
-                    Work
-                  </ScrollLink>
-                </li>
                 <li>
                   <ScrollLink
                     to="about"
