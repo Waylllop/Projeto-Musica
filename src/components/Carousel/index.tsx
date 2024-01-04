@@ -53,7 +53,7 @@ const Carousel = ({ songs, setActiveSong }: CarouselProps) => {
                 <div
                   onClick={() => setSong(song)}
                   className="cursor-pointer flex items-center justify-center relative"
-                  onMouseEnter={() => setShowIcon(true)}
+                  onMouseMove={() => setShowIcon(true)}
                   onMouseLeave={() => setShowIcon(false)}
                 >
                   <img

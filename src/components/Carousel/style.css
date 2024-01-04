@@ -23,11 +23,20 @@
 }
 
 .swiper-button-next {
-  color: red;
+  color: #1b2021;
   top: 90%;
 }
 
 .swiper-button-prev {
-  color: red;
+  color: #1b2021;
   top: 90%;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 2rem;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #1b2021;
 }
