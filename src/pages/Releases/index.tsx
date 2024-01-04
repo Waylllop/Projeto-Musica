@@ -4,6 +4,7 @@ import { gql, useQuery } from "@apollo/client";
 import { SongContext } from "../../context/SongContext";
 import { song } from "../../common/interfices";
 import Carousel from "../../components/Carousel";
+import Info from "../../components/Util/Info";
 
 const GET_SONGS_QUERY = gql`
   query GetSongs {
@@ -20,7 +21,7 @@ const GET_SONGS_QUERY = gql`
   }
 `;
 
-const Release = () => {
+const Releases = () => {
   const context = useContext(SongContext);
   if (!context) {
     throw new Error("useSong must be used within a SongProvider");
@@ -52,12 +53,7 @@ const Release = () => {
         <h1 className="text-5xl font-bold">Work</h1>
         <NavLink
           to="/work"
-          className={({ isActive }) =>
-            `bg-dark text-light text-3xl border-2 border-dark rounded-3xl px-10 py-2 ${
-              isActive ? "duration-200" : "hover:text-[#FBB13C] duration-200]"
-            }`
-          }
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="bg-dark text-light text-3xl border-2 border-dark rounded-3xl px-10 py-2 hover:text-[#FBB13C] duration-200"
         >
           See More
         </NavLink>
@@ -66,22 +62,10 @@ const Release = () => {
       <div className="grid grid-cols-[minmax(200px,30%)_1fr]">
         <div className="flex flex-col justify-between">
           <div className="flex flex-col gap-4">
-            <div>
-              <p className="text-2xl text-secondary mb-[-10px]">Tiitle</p>
-              <p className="text-4xl text-dark">{activeSong?.title}</p>
-            </div>
-            <div>
-              <p className="text-2xl text-secondary mb-[-10px]">Artist</p>
-              <p className="text-4xl text-dark">{activeSong?.artist}</p>
-            </div>
-            <div>
-              <p className="text-2xl text-secondary mb-[-10px]">Genre</p>
-              <p className="text-4xl text-dark">{activeSong?.genre}</p>
-            </div>
-            <div>
-              <p className="text-2xl text-secondary mb-[-10px]">Album</p>
-              <p className="text-4xl text-dark">{activeSong?.album}</p>
-            </div>
+            <Info title="Title" data={activeSong?.title} />
+            <Info title="Artist" data={activeSong?.artist} />
+            <Info title="Genre" data={activeSong?.genre} />
+            <Info title="Album" data={activeSong?.album} />
           </div>
         </div>
 
@@ -91,4 +75,4 @@ const Release = () => {
   );
 };
 
-export default Release;
+export default Releases;
