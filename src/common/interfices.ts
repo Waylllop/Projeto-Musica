@@ -13,3 +13,8 @@ export interface song {
   musicUrl: string;
   artworkUrl: string;
 }
+
+export interface filter {
+  id: number;
+  name: string;
+}

@@ -24,7 +24,6 @@ html {
 
 *::-webkit-scrollbar-thumb {
   background-color: #fbb13c;
-  /* border-radius: 14px; */
 }
 
 .scroll-custom {
@@ -32,5 +31,13 @@ html {
 }
 
 .scroll-custom::-webkit-scrollbar-thumb {
+  background-color: #1b2021;
+}
+
+.filter-scroll-custom {
+  scrollbar-color: #1b2021;
+}
+
+.filter-scroll-custom::-webkit-scrollbar-thumb {
   background-color: #1b2021;
 }

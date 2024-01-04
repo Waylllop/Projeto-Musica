@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useContext, useState } from "react";
 import { SongContext } from "../../context/SongContext";
-import { PlayCircle } from "@phosphor-icons/react";
+import { Play } from "@phosphor-icons/react";
 
 import { EffectCoverflow, Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
@@ -62,8 +62,8 @@ const Carousel = ({ songs, setActiveSong }: CarouselProps) => {
                     className="rounded-[48px] h-[400px] w-[400px] brightness-100 duration-1000 object-cover"
                   />
                   {showIcon ? (
-                    <div className="absolute bg-light rounded-full opacity-90">
-                      <PlayCircle size={200} className="text-primary" />
+                    <div className="w-44 h-44 absolute flex justify-center items-center bg-light rounded-full opacity-90 pr-1">
+                      <Play size={100} className="text-dark" weight="fill" />
                     </div>
                   ) : null}
                 </div>

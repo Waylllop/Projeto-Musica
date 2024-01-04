@@ -7,9 +7,9 @@ const Contact = () => {
         <div className="text-dark text-2xl flex flex-col gap-10">
           <p>
             You can send details about your project directly to{" "}
-            <a href="mailto:yllopmusic@gmail.com." className="font-bold underline hover:text-secondary">
+            <span className="font-bold underline">
               yllopmusic@gmail.com.
-            </a>
+            </span>
           </p>
 
           <p>
@@ -45,7 +45,11 @@ const Contact = () => {
             </a>
           </span>
           <span>
-            <a href="#" className="font-bold underline hover:text-secondary">
+            <a
+              href="https://waylllop.github.io/MusicasMp3/identidade-visual/curriculum-en.pdf"
+              className="font-bold underline hover:text-secondary"
+              target="_blank"
+            >
               Curriculum
             </a>
           </span>

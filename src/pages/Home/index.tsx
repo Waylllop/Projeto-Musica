@@ -1,6 +1,6 @@
 import About from "../About";
 import Contact from "../Contact";
-import Work from "../Releases";
+import Releases from "../Releases";
 
 const Home = () => {
   return (
@@ -12,7 +12,7 @@ const Home = () => {
         </p>
       </section>
 
-      <Work />
+      <Releases />
       <About />
       <Contact />
     </>

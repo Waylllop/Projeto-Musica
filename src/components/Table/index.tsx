@@ -1,6 +1,6 @@
 import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import { song } from "../../common/interfices";
-import { PlayCircle } from "@phosphor-icons/react";
+import { Play } from "@phosphor-icons/react";
 import { useState } from "react";
 
 interface TableProps {
@@ -22,8 +22,8 @@ const Table = ({ songs, setSong }: TableProps) => {
             alt={`${info.row.original.title}`}
           />
           {showIconId === info.row.original.id ? (
-            <div className="absolute bg-light rounded-full opacity-90">
-              <PlayCircle size={48} className="text-primary" />
+            <div className="w-14 h-14 absolute flex justify-center items-center bg-light rounded-full opacity-90">
+              <Play size={28} className="text-dark" weight="fill" />
             </div>
           ) : null}
         </div>
