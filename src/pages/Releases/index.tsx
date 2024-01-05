@@ -1,48 +1,42 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { gql, useQuery } from "@apollo/client";
-import { SongContext } from "../../context/SongContext";
 import { song } from "../../common/interfices";
 import Carousel from "../../components/Carousel";
 import Info from "../../components/Util/Info";
+import useSong from "../../Hooks/UseSongContext/intex";
 
 const GET_SONGS_QUERY = gql`
   query GetSongs {
-    songs(first: 5, orderBy: createdAt_DESC) {
+    songs(first: 20, orderBy: createdAt_DESC) {
       id
       album
       artist
       artworkUrl
       genre
       musicUrl
+      playtime
+      soundcloudUrl
+      spotifyUrl
       title
       type
+      webUrl
+      youtubeUrl
     }
   }
 `;
 
 const Releases = () => {
-  const context = useContext(SongContext);
-  if (!context) {
-    throw new Error("useSong must be used within a SongProvider");
-  }
-  const { song, setSong } = context;
+  const { setSongList } = useSong();
   const [activeSong, setActiveSong] = useState<song | null>(null);
   const { loading, error, data } = useQuery(GET_SONGS_QUERY);
 
   useEffect(() => {
     if (data) {
       setActiveSong(data.songs[0]);
+      setSongList(data.songs);
     }
-  }, [data]);
-
-  useEffect(() => {
-    if (data) {
-      if (song.title === "") {
-        setSong(data.songs[0]);
-      }
-    }
-  }, [data, setSong, song]);
+  }, [data, setSongList]);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error</p>;

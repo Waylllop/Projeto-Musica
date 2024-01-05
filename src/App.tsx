@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { ApolloClient, InMemoryCache, createHttpLink, ApolloProvider } from "@apollo/client";
 import { SongProvider } from "./context/SongContext";
+import { SongPlayingProvider } from "./context/SongPlaying";
 // import { setContext } from "@apollo/client/link/context";
 
 import Home from "./pages/Home";
@@ -40,13 +41,15 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <SongProvider>
-          <Layout>
-            <Routes>
-              <Route path="/" element={<Navigate to="/home" />} />
-              <Route path="/home" element={<Home />} />
-              <Route path="/work" element={<Work />} />
-            </Routes>
-          </Layout>
+          <SongPlayingProvider>
+            <Layout>
+              <Routes>
+                <Route path="/" element={<Navigate to="/home" />} />
+                <Route path="/home" element={<Home />} />
+                <Route path="/work" element={<Work />} />
+              </Routes>
+            </Layout>
+          </SongPlayingProvider>
         </SongProvider>
       </Router>
     </ApolloProvider>

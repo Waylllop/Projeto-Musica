@@ -3,7 +3,9 @@ import { song } from "../common/interfices";
 
 interface SongContextType {
   song: song;
+  songList: song[];
   setSong: React.Dispatch<React.SetStateAction<song>>;
+  setSongList: React.Dispatch<React.SetStateAction<song[]>>;
 }
 
 const SongContext = createContext<SongContextType | undefined>(undefined);
@@ -24,7 +26,9 @@ const SongProvider = ({ children }: { children: React.ReactNode }) => {
     musicUrl: "",
     artworkUrl: "",
   });
-  return <SongContext.Provider value={{ song, setSong }}>{children}</SongContext.Provider>;
+  const [songList, setSongList] = useState<song[]>([]);
+
+  return <SongContext.Provider value={{ song, setSong, songList, setSongList }}>{children}</SongContext.Provider>;
 };
 
 export { SongContext, SongProvider };

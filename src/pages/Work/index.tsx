@@ -1,6 +1,6 @@
-import { useContext, useEffect, useState } from "react";
-import { SongContext } from "../../context/SongContext";
+import { useEffect, useState } from "react";
 import { gql, useQuery } from "@apollo/client";
+import useSong from "../../Hooks/UseSongContext/intex";
 import Table from "../../components/Table";
 import FilterButton from "../../components/Util/FilterButton";
 import { filter, song } from "../../common/interfices";
@@ -27,14 +27,10 @@ const GET_SONGS_QUERY = gql`
 `;
 
 const Work = () => {
-  const context = useContext(SongContext);
-  if (!context) {
-    throw new Error("useSong must be used within a SongProvider");
-  }
-  const { song, setSong } = context;
   const { loading, error, data } = useQuery(GET_SONGS_QUERY);
+  const { setSongList } = useSong();
 
-  const [songsList, setSongsList] = useState<song[]>([]);
+  const [filteredSongList, setFilteredSongList] = useState<song[]>([]);
 
   const [genreModalOpen, setGenreModalOpen] = useState<boolean>(false);
   const [selectedGenreOptions, setSelectedGenreOptions] = useState<number[]>([]);
@@ -55,6 +51,8 @@ const Work = () => {
   useEffect(() => {
     if (!data) return;
 
+    setSongList(data.songs);
+
     const uniqueGenreSet = Array.from(new Set<string>(data.songs.map((song: song) => song.genre)), (name, index) => ({
       id: index,
       name,
@@ -72,15 +70,7 @@ const Work = () => {
       name,
     }));
     setAlbumList(uniqueAlbumSet);
-  }, [data]);
-
-  useEffect(() => {
-    if (data) {
-      if (song.title === "") {
-        setSong(data.songs[0]);
-      }
-    }
-  }, [data, setSong, song]);
+  }, [data, setSongList, setGenreList, setTypeList, setAlbumList]);
 
   useEffect(() => {
     if (data) {
@@ -98,7 +88,7 @@ const Work = () => {
         filteredSongs = filteredSongs.filter((song: song) => selectedAlbumFilters.includes(song.album));
       }
 
-      setSongsList(filteredSongs);
+      setFilteredSongList(filteredSongs);
     }
   }, [selectedGenreFilters, selectedTypeFilters, selectedAlbumFilters, data]);
 
@@ -110,7 +100,7 @@ const Work = () => {
       <h1 className="text-5xl mb-10 font-bold">Take a listen</h1>
       <div className="grid grid-cols-[minmax(200px,70%)_1fr]">
         <div className="w- min-h-[calc(100vh-352px)]">
-          <Table songs={songsList} setSong={setSong} />
+          <Table songs={filteredSongList} />
         </div>
 
         <div className="flex flex-col items-center gap-6 fixed right-[8%] top-28">

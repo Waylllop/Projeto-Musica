@@ -1,14 +1,19 @@
+import { useState } from "react";
 import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
+import useSong from "../../Hooks/UseSongContext/intex";
+import usePlayingSong from "../../Hooks/UsePlayingSong";
 import { song } from "../../common/interfices";
 import { Play } from "@phosphor-icons/react";
-import { useState } from "react";
+import "./style.css";
 
 interface TableProps {
   songs: song[];
-  setSong: React.Dispatch<React.SetStateAction<song>>;
 }
 
-const Table = ({ songs, setSong }: TableProps) => {
+const Table = ({ songs }: TableProps) => {
+  const { setSong } = useSong();
+  const { playingSong, songStates } = usePlayingSong();
+
   const [showIconId, setShowIconId] = useState<string>("");
   const columnHelper = createColumnHelper<song>();
 
@@ -24,6 +29,15 @@ const Table = ({ songs, setSong }: TableProps) => {
           {showIconId === info.row.original.id ? (
             <div className="w-14 h-14 absolute flex justify-center items-center bg-light rounded-full opacity-90">
               <Play size={28} className="text-dark" weight="fill" />
+            </div>
+          ) : null}
+          {playingSong.id === info.row.original.id && songStates.playing ? (
+            <div className="w-14 h-14 absolute flex justify-center items-center bg-light rounded-full opacity-90">
+              <div className="playing">
+                <span className="playing__bar playing__bar1"></span>
+                <span className="playing__bar playing__bar2"></span>
+                <span className="playing__bar playing__bar3"></span>
+              </div>
             </div>
           ) : null}
         </div>

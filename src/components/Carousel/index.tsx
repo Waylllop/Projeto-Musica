@@ -1,8 +1,6 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useContext, useState } from "react";
-import { SongContext } from "../../context/SongContext";
+import { useState } from "react";
 import { Play } from "@phosphor-icons/react";
-
 import { EffectCoverflow, Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
@@ -10,6 +8,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "./style.css";
 import { song } from "../../common/interfices";
+import useSong from "../../Hooks/UseSongContext/intex";
 
 interface CarouselProps {
   songs: song[];
@@ -18,11 +17,7 @@ interface CarouselProps {
 
 const Carousel = ({ songs, setActiveSong }: CarouselProps) => {
   const [showIcon, setShowIcon] = useState(false);
-  const context = useContext(SongContext);
-  if (!context) {
-    throw new Error("useSong must be used within a SongProvider");
-  }
-  const { setSong } = context;
+  const { setSong } = useSong();
 
   return (
     <Swiper
@@ -45,7 +40,7 @@ const Carousel = ({ songs, setActiveSong }: CarouselProps) => {
         setActiveSong(songs[swiper.activeIndex]);
       }}
     >
-      {songs.map((song: song) => (
+      {songs.slice(0, 5).map((song: song) => (
         <SwiperSlide key={song.id}>
           {({ isActive }) => (
             <div>
