@@ -22,7 +22,7 @@ const Player = () => {
     progress: 0,
     played: 0,
     playedSeconds: 0,
-    volume: 0.1,
+    volume: 0.5,
     lastClickTime: 0,
   });
 
