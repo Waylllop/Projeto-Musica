@@ -1,9 +1,10 @@
-import { useState } from "react";
 import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
-import useSong from "../../Hooks/UseSongContext/intex";
+import useSong from "../../Hooks/UseSongContext";
 import usePlayingSong from "../../Hooks/UsePlayingSong";
+import { secondsToMinutes } from "../../common/function";
 import { song } from "../../common/interfices";
 import { Play } from "@phosphor-icons/react";
+import BarAnimation from "../Util/BarAnimation";
 import "./style.css";
 
 interface TableProps {
@@ -11,10 +12,8 @@ interface TableProps {
 }
 
 const Table = ({ songs }: TableProps) => {
+  const { playingSong, songStates, setSongStates } = usePlayingSong();
   const { setSong } = useSong();
-  const { playingSong, songStates } = usePlayingSong();
-
-  const [showIconId, setShowIconId] = useState<string>("");
   const columnHelper = createColumnHelper<song>();
 
   const columns = [
@@ -26,20 +25,14 @@ const Table = ({ songs }: TableProps) => {
             src={info.getValue()}
             alt={`${info.row.original.title}`}
           />
-          {showIconId === info.row.original.id ? (
-            <div className="w-14 h-14 absolute flex justify-center items-center bg-light rounded-full opacity-90">
+
+          {playingSong.id === info.row.original.id && songStates.playing ? (
+            <BarAnimation bgSize="14" barSize="10" />
+          ) : (
+            <div className="playIcon w-14 h-14 absolute justify-center items-center bg-light rounded-full opacity-90">
               <Play size={28} className="text-dark" weight="fill" />
             </div>
-          ) : null}
-          {playingSong.id === info.row.original.id && songStates.playing ? (
-            <div className="w-14 h-14 absolute flex justify-center items-center bg-light rounded-full opacity-90">
-              <div className="playing">
-                <span className="playing__bar playing__bar1"></span>
-                <span className="playing__bar playing__bar2"></span>
-                <span className="playing__bar playing__bar3"></span>
-              </div>
-            </div>
-          ) : null}
+          )}
         </div>
       ),
       header: "",
@@ -71,7 +64,7 @@ const Table = ({ songs }: TableProps) => {
     }),
 
     columnHelper.accessor("playtime", {
-      cell: (info) => <span className="mt-2 block">{info.getValue()}</span>,
+      cell: (info) => <span className="mt-2 block">{secondsToMinutes(Number(info.getValue()))}</span>,
       header: "Playtime",
     }),
 
@@ -104,10 +97,14 @@ const Table = ({ songs }: TableProps) => {
         {table.getRowModel().rows.map((row) => (
           <tr
             key={row.id}
-            onClick={() => setSong(row.original)}
-            onMouseEnter={() => setShowIconId(row.original.id)}
-            onMouseLeave={() => setShowIconId("")}
-            className="cursor-pointer hover:bg-[#C3C3C3] duration-500"
+            onClick={() => {
+              setSong(row.original);
+              setSongStates((prevState) => ({
+                ...prevState,
+                playing: !songStates.playing,
+              }));
+            }}
+            className="cursor-pointer hover:bg-[#C3C3C3] duration-500 song-table-row"
           >
             {row.getVisibleCells().map((cell) => (
               <td className="align-top" key={cell.id}>
