@@ -1,19 +1,20 @@
 import { useEffect, useRef, useState } from "react";
-import ReactPlayer from "react-player";
 import { DotsThreeOutlineVertical, ShareNetwork } from "@phosphor-icons/react";
-import useSong from "../../Hooks/UseSongContext/intex";
+import ReactPlayer from "react-player";
+import useSong from "../../Hooks/UseSongContext";
 import usePlayingSong from "../../Hooks/UsePlayingSong";
+import { secondsToMinutes } from "../../common/function";
 import Volume from "./Volume";
-import "./style.css";
 import Controls from "./Controls";
+import Slider from "./Slider";
+import "./style.css";
 
 const Player = () => {
+  const { songStates, setSongStates, setPlayingSong } = usePlayingSong();
   const { song, setSong, songList } = useSong();
-  const { setSongStates, setPlayingSong } = usePlayingSong();
   const player = useRef<ReactPlayer | null>(null);
 
   const [states, setStates] = useState({
-    playing: false,
     seeking: false,
     volumeOpen: false,
     muted: false,
@@ -21,16 +22,15 @@ const Player = () => {
     progress: 0,
     played: 0,
     playedSeconds: 0,
-    volume: 0.6,
+    volume: 0.1,
     lastClickTime: 0,
-    ended: false,
   });
 
   const handlePlayPause = () => {
     if (song.title !== "") {
-      setStates((prevState) => ({
+      setSongStates((prevState) => ({
         ...prevState,
-        playing: !prevState.playing,
+        playing: !songStates.playing,
       }));
     }
   };
@@ -67,7 +67,7 @@ const Player = () => {
   };
 
   const handleEnded = () => {
-    setStates((prevState) => ({
+    setSongStates((prevState) => ({
       ...prevState,
       playing: false,
       ended: true,
@@ -123,56 +123,31 @@ const Player = () => {
     }
   };
 
-  function secondsToMinutes(playtime: number): string {
-    const minutes = Math.floor((playtime % 3600) / 60)
-      .toString()
-      .padStart(1, "0");
-    const seconds = Math.floor(playtime % 60)
-      .toString()
-      .padStart(2, "0");
-    return `${minutes}:${seconds}`;
-  }
-
   useEffect(() => {
     if (song.title != "") {
-      setStates((prevState) => ({
+      setSongStates((prevState) => ({
         ...prevState,
         playing: true,
       }));
     }
-  }, [song, setStates]);
+  }, [song, setSongStates]);
 
   useEffect(() => {
-    setSongStates({
-      playing: states.playing,
-      ended: states.ended,
-    });
-
     setPlayingSong({
       title: song.title,
       id: song.id,
     });
-  }, [states.playing, states.ended, setSongStates, setPlayingSong, song.title, song.id]);
+  }, [setPlayingSong, song.title, song.id]);
 
   return (
     <div className="w-full">
-      <div>
-        <label htmlFor="slider">
-          <input
-            className="w-full cursor-pointer"
-            type="range"
-            id="slider"
-            title="slider"
-            min={0}
-            max={0.999999}
-            step="any"
-            value={states.played}
-            onMouseDown={handleSeekMouseDown}
-            onChange={handleSeekChange}
-            onMouseUp={handleSeekMouseUp}
-          />
-        </label>
-      </div>
+      <Slider
+        played={states.played}
+        handleSeekMouseDown={handleSeekMouseDown}
+        handleSeekChange={handleSeekChange}
+        // @ts-expect-error expected any
+        handleSeekMouseUp={handleSeekMouseUp}
+      />
       <div className="w-full h-16 bg-dark text-light">
         <div className="relative h-16 px-14 grid grid-cols-[40%_1fr_25%_15%] justify-center items-center">
           <div className="flex gap-4 items-center">
@@ -196,7 +171,7 @@ const Player = () => {
             handlePreviousSong={handlePreviousSong}
             handlePlayPause={handlePlayPause}
             handleNextSong={handleNextSong}
-            playing={states.playing}
+            playing={songStates.playing}
           />
 
           <div className="text-xl">
@@ -220,7 +195,7 @@ const Player = () => {
           <ReactPlayer
             ref={player}
             url={song.musicUrl}
-            playing={states.playing}
+            playing={songStates.playing}
             volume={states.volume}
             muted={states.muted}
             onDuration={handleDuration}
