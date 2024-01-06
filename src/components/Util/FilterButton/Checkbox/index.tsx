@@ -40,7 +40,7 @@ const Checkbox = ({
   return (
     <div className="flex flex-col gap-4 overflow-y-auto mr-2 mb-4 filter-scroll-custom max-h-[200px]">
       {options?.map((option) => (
-        <label key={option.id} className="text-dark text-2xl ml-4">
+        <label key={option.id} className="text-dark text-xl ml-4">
           <input
             className="mr-2 appearance-none w-4 h-4 rounded-md border-2 border-dark bg-light checked:bg-dark checked:border-dark"
             type="checkbox"

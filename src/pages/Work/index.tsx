@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { gql, useQuery } from "@apollo/client";
-import useSong from "../../Hooks/UseSongContext/intex";
+import { filter, song } from "../../common/interfices";
+import useSong from "../../Hooks/UseSongContext";
 import Table from "../../components/Table";
 import FilterButton from "../../components/Util/FilterButton";
-import { filter, song } from "../../common/interfices";
 import Checkbox from "../../components/Util/FilterButton/Checkbox";
 
 const GET_SONGS_QUERY = gql`
@@ -98,7 +98,7 @@ const Work = () => {
   return (
     <section className="mx-16 py-10 ">
       <h1 className="text-5xl mb-10 font-bold">Take a listen</h1>
-      <div className="grid grid-cols-[minmax(200px,70%)_1fr]">
+      <div className="grid grid-cols-[minmax(200px,80%)_1fr]">
         <div className="w- min-h-[calc(100vh-352px)]">
           <Table songs={filteredSongList} />
         </div>

@@ -7,7 +7,6 @@ interface VolumeProps {
   muted: boolean;
   setStates: React.Dispatch<
     React.SetStateAction<{
-      playing: boolean;
       seeking: boolean;
       volumeOpen: boolean;
       muted: boolean;
@@ -17,7 +16,6 @@ interface VolumeProps {
       playedSeconds: number;
       volume: number;
       lastClickTime: number;
-      ended: boolean;
     }>
   >;
 }

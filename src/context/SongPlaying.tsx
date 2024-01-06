@@ -24,8 +24,6 @@ const SongPlayingProvider = ({ children }: { children: React.ReactNode }) => {
     ended: false,
   });
 
-  console.log(songStates);
-
   return (
     <SongPlaying.Provider value={{ playingSong, setPlayingSong, songStates, setSongStates }}>
       {children}

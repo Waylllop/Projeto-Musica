@@ -4,7 +4,7 @@ import { gql, useQuery } from "@apollo/client";
 import { song } from "../../common/interfices";
 import Carousel from "../../components/Carousel";
 import Info from "../../components/Util/Info";
-import useSong from "../../Hooks/UseSongContext/intex";
+import useSong from "../../Hooks/UseSongContext";
 
 const GET_SONGS_QUERY = gql`
   query GetSongs {

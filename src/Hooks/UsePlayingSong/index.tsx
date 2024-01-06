@@ -1,6 +1,5 @@
-import { useContext } from 'react';
-import { SongPlaying } from '../../context/SongPlaying';
-
+import { useContext } from "react";
+import { SongPlaying } from "../../context/SongPlaying";
 
 const usePlayingSong = () => {
   const context = useContext(SongPlaying);

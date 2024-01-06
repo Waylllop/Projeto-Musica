@@ -9,14 +9,14 @@ interface FilterButtonProps {
 const FilterButton = ({ title, onClick, style, isModalOpen }: FilterButtonProps) => {
   return (
     <button
-      className={`w-[250px] h-[60px] text-dark font-bold text-3xl flex justify-between items-center px-4 py-2 duration-200 ${style}`}
+      className={`w-[200px] h-[50px] text-dark font-bold text-2xl flex justify-between items-center px-4 py-2 duration-200 ${style}`}
       onClick={onClick}
     >
       <span className="block">{title}</span>
       {isModalOpen ? (
-        <Minus size={32} weight="bold" className="text-dark" />
+        <Minus size={24} weight="bold" className="text-dark" />
       ) : (
-        <Plus size={32} weight="bold" className="text-dark" />
+        <Plus size={24} weight="bold" className="text-dark" />
       )}
     </button>
   );
