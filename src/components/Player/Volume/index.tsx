@@ -24,24 +24,22 @@ const Volume = ({ volume, volumeOpen, handleVolumeChange, setStates, muted }: Vo
   return (
     <>
       {volumeOpen ? (
-        <div className="absolute flex flex-col gap-8 justify-center items-center w-10 h-44 left-[30%] top-[-100px]">
+        <div className="absolute flex flex-col gap-8 justify-center items-center w-10 h-44 left-[30%] top-[-101px]">
           <div
             className="bg-dark w-40 p-3 pl-10 rounded-xl rotate-[270deg]"
             onMouseMove={() => setStates((prevState) => ({ ...prevState, volumeOpen: true }))}
             onMouseLeave={() => setStates((prevState) => ({ ...prevState, volumeOpen: false }))}
           >
-            <label>
-              <input
-                className="w-full mt-2"
-                type="range"
-                min={0}
-                max={1}
-                step="any"
-                value={volume}
-                onChange={handleVolumeChange}
-                disabled={!volumeOpen}
-              />
-            </label>
+            <input
+              className="w-full mt-2 text-light"
+              type="range"
+              min={0}
+              max={1}
+              step="any"
+              value={volume}
+              onChange={handleVolumeChange}
+              disabled={!volumeOpen}
+            />
           </div>
           <div
             className="cursor-pointer z-10"

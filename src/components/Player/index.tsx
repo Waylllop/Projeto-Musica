@@ -6,7 +6,7 @@ import usePlayingSong from "../../Hooks/UsePlayingSong";
 import { secondsToMinutes } from "../../common/function";
 import Volume from "./Volume";
 import Controls from "./Controls";
-import Slider from "./Slider";
+import SongSlider from "./SongSlider";
 import "./style.css";
 
 const Player = () => {
@@ -141,15 +141,15 @@ const Player = () => {
 
   return (
     <div className="w-full">
-      <Slider
-        played={states.played}
-        handleSeekMouseDown={handleSeekMouseDown}
-        handleSeekChange={handleSeekChange}
-        // @ts-expect-error expected any
-        handleSeekMouseUp={handleSeekMouseUp}
-      />
-      <div className="w-full h-16 bg-dark text-light">
-        <div className="relative h-16 px-14 grid grid-cols-[40%_1fr_25%_15%] justify-center items-center">
+      <div className="w-full h-16 bg-dark text-light relative">
+        <SongSlider
+          played={states.played}
+          handleSeekMouseDown={handleSeekMouseDown}
+          handleSeekChange={handleSeekChange}
+          // @ts-expect-error expected any
+          handleSeekMouseUp={handleSeekMouseUp}
+        />
+        <div className="relative h-16 px-14 grid grid-cols-[40%_1fr_25%_15%] justify-center items-center mt-[-24px]">
           <div className="flex gap-4 items-center">
             <img src={song.artworkUrl} alt={song.title} className="h-12 rounded-lg" />
 
