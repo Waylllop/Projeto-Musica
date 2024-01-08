@@ -5,6 +5,7 @@ import useSong from "../../Hooks/UseSongContext";
 import Table from "../../components/Table";
 import FilterButton from "../../components/Util/FilterButton";
 import Checkbox from "../../components/Util/FilterButton/Checkbox";
+import Loader from "../../components/Util/Loader";
 
 const GET_SONGS_QUERY = gql`
   query GetSongs {
@@ -93,15 +94,16 @@ const Work = () => {
     }
   }, [selectedGenreFilters, selectedTypeFilters, selectedAlbumFilters, data]);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error</p>;
-
   return (
     <section className="mx-16 py-10 ">
       <h1 className="text-5xl mb-10 font-bold">Take a listen</h1>
       <div className="grid grid-cols-[minmax(200px,80%)_1fr]">
         <div className="w- min-h-[calc(100vh-352px)]">
-          <Table songs={filteredSongList} />
+          <Loader loading={loading} />
+
+          {error ? <p className="text-3xl">Something went wrong, please try again later.</p> : null}
+
+          {!loading && !error && data ? <Table songs={filteredSongList} /> : null}
         </div>
 
         <div className="flex flex-col items-center gap-6 fixed right-[8%] top-28">

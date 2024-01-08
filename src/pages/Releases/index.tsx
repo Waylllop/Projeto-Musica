@@ -5,6 +5,7 @@ import { song } from "../../common/interfices";
 import Carousel from "../../components/Carousel";
 import Info from "../../components/Util/Info";
 import useSong from "../../Hooks/UseSongContext";
+import Loader from "../../components/Util/Loader";
 
 const GET_SONGS_QUERY = gql`
   query GetSongs {
@@ -39,9 +40,6 @@ const Releases = () => {
     }
   }, [data, setSongList]);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error</p>;
-
   return (
     <section className="scroll-smooth mx-16 mt-20 border-t-4 border-dark">
       <div className="flex flex-row my-10 items-center gap-4 justify-between">
@@ -54,18 +52,24 @@ const Releases = () => {
         </NavLink>
       </div>
 
-      <div className="grid grid-cols-[minmax(200px,30%)_1fr]">
-        <div className="flex flex-col justify-between">
-          <div className="flex flex-col gap-4">
-            <Info title="Title" data={activeSong?.title} />
-            <Info title="Artist" data={activeSong?.artist} />
-            <Info title="Genre" data={activeSong?.genre} />
-            <Info title="Album" data={activeSong?.album} />
-          </div>
-        </div>
+      <Loader loading={loading} />
 
-        <Carousel songs={data.songs} setActiveSong={setActiveSong} />
-      </div>
+      {error ? <p className="text-3xl">Something went wrong, please try again later.</p> : null}
+
+      {!loading && !error && data ? (
+        <div className="grid grid-cols-[minmax(200px,30%)_1fr]">
+          <div className="flex flex-col justify-between">
+            <div className="flex flex-col gap-4">
+              <Info title="Title" data={activeSong?.title} />
+              <Info title="Artist" data={activeSong?.artist} />
+              <Info title="Genre" data={activeSong?.genre} />
+              <Info title="Album" data={activeSong?.album} />
+            </div>
+          </div>
+
+          <Carousel songs={data.songs} setActiveSong={setActiveSong} />
+        </div>
+      ) : null}
     </section>
   );
 };
