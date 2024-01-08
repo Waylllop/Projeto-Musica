@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { DotsThreeOutlineVertical, ShareNetwork } from "@phosphor-icons/react";
 import ReactPlayer from "react-player";
+import { useMutation, gql } from "@apollo/client";
 import useSong from "../../Hooks/UseSongContext";
 import usePlayingSong from "../../Hooks/UsePlayingSong";
 import { secondsToMinutes } from "../../common/function";
@@ -9,10 +10,25 @@ import Controls from "./Controls";
 import SongSlider from "./SongSlider";
 import "./style.css";
 
+const UPDATE_SONG = gql`
+  mutation MyMutation($id: ID!, $timesPlayed: Int!) {
+    updateSong(data: { timesPlayed: $timesPlayed }, where: { id: $id }) {
+      id
+    }
+    publishSong(to: PUBLISHED, where: { id: $id }) {
+      scheduledIn {
+        id
+      }
+    }
+  }
+`;
+
 const Player = () => {
   const { songStates, setSongStates, setPlayingSong } = usePlayingSong();
-  const { song, setSong, songList } = useSong();
+  const { song, setSong, songList, setSongList } = useSong();
   const player = useRef<ReactPlayer | null>(null);
+
+  const [updateSong] = useMutation(UPDATE_SONG);
 
   const [states, setStates] = useState({
     seeking: false,
@@ -24,6 +40,8 @@ const Player = () => {
     playedSeconds: 0,
     volume: 0.5,
     lastClickTime: 0,
+    timePlayStart: 0,
+    timePlayedMutation: false,
   });
 
   const handlePlayPause = () => {
@@ -129,6 +147,11 @@ const Player = () => {
         ...prevState,
         playing: true,
       }));
+      setStates((prevState) => ({
+        ...prevState,
+        timePlayStart: Date.now(),
+        timePlayedMutation: false,
+      }));
     }
   }, [song, setSongStates]);
 
@@ -137,7 +160,42 @@ const Player = () => {
       title: song.title,
       id: song.id,
     });
-  }, [setPlayingSong, song.title, song.id]);
+  }, [setPlayingSong, song]);
+
+  useEffect(() => {
+    const updateTimesPlayed = (id: string, newTimesPlayed: number) => {
+      setSongList((prevSongs) =>
+        prevSongs.map((song) => (song.id === id ? { ...song, timesPlayed: newTimesPlayed } : song)),
+      );
+    };
+
+    if (!states.timePlayedMutation && states.timePlayStart !== 0) {
+      const timeNow = Date.now();
+      const elapsedTime = (timeNow - states.timePlayStart) / 1000;
+
+      if (elapsedTime >= 20) {
+        const selectedSong = songList.find((music) => music.id === song.id);
+
+        if (!selectedSong) {
+          return;
+        }
+
+        setStates((prevState) => ({
+          ...prevState,
+          timePlayedMutation: true,
+        }));
+
+        updateTimesPlayed(song.id, selectedSong.timesPlayed + 1);
+
+        updateSong({
+          variables: {
+            id: song.id,
+            timesPlayed: selectedSong.timesPlayed + 1,
+          },
+        });
+      }
+    }
+  }, [states, song, updateSong, setStates, songList, setSongList]);
 
   return (
     <div className="w-full">

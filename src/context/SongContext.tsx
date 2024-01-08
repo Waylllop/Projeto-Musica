@@ -25,6 +25,7 @@ const SongProvider = ({ children }: { children: React.ReactNode }) => {
     spotifyUrl: "",
     musicUrl: "",
     artworkUrl: "",
+    timesPlayed: 0,
   });
   const [songList, setSongList] = useState<song[]>([]);
 

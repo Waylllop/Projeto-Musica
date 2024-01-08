@@ -38,6 +38,11 @@ const Table = ({ songs }: TableProps) => {
       header: "",
     }),
 
+    columnHelper.accessor("timesPlayed", {
+      cell: (info) => <span className="mt-2 block">{info.getValue().toLocaleString("pt-BR")}</span>,
+      header: "Plays",
+    }),
+
     columnHelper.accessor("title", {
       cell: (info) => (
         <div className="flex flex-col gap-2 mt-2">

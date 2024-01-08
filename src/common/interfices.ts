@@ -12,6 +12,7 @@ export interface song {
   spotifyUrl: string;
   musicUrl: string;
   artworkUrl: string;
+  timesPlayed: number;
 }
 
 export interface filter {

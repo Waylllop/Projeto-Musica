@@ -16,6 +16,8 @@ interface VolumeProps {
       playedSeconds: number;
       volume: number;
       lastClickTime: number;
+      timePlayStart: number;
+      timePlayedMutation: boolean;
     }>
   >;
 }

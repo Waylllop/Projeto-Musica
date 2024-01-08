@@ -22,6 +22,7 @@ const GET_SONGS_QUERY = gql`
       type
       webUrl
       youtubeUrl
+      timesPlayed
     }
   }
 `;
