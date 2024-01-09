@@ -168,6 +168,11 @@ const Player = () => {
       const elapsedTime = (timeNow - states.timePlayStart) / 1000;
 
       if (elapsedTime >= 20) {
+        setStates((prevState) => ({
+          ...prevState,
+          timePlayedMutation: true,
+        }));
+
         const handleTimesPlayed = async (id: string) => {
           const { data } = await client.query({
             query: gql`
@@ -181,11 +186,7 @@ const Player = () => {
             fetchPolicy: "network-only",
           });
 
-          setStates((prevState) => ({
-            ...prevState,
-            timePlayedMutation: true,
-          }));
-
+          console.log("teste");
           updateSong({
             variables: {
               id: song.id,
