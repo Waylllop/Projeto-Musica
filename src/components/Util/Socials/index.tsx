@@ -3,10 +3,12 @@ import { song } from "../../../common/interfices";
 
 interface SocialsProps {
   data: song;
+  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
-const Socials = ({ data }: SocialsProps) => {
+const Socials = ({ data, setModalOpen }: SocialsProps) => {
   const handleLinkClick = (e: React.MouseEvent) => {
     e.stopPropagation();
+    setModalOpen(false);
   };
 
   return (

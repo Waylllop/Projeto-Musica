@@ -70,7 +70,9 @@ const Table = ({ songs }: TableProps) => {
     }),
 
     columnHelper.accessor("soundcloudUrl", {
-      cell: ({ row }: { row: { original: song } }) => <Modal data={row.original} />,
+      cell: ({ row }: { row: { original: song } }) => (
+        <Modal data={row.original} color="dark" size={24} top="top-0" right="right-14" type="social" />
+      ),
       header: "Social",
     }),
   ];

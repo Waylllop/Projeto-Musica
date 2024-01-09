@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { DotsThreeOutlineVertical, ShareNetwork } from "@phosphor-icons/react";
 import ReactPlayer from "react-player";
 import { useMutation, gql, useApolloClient } from "@apollo/client";
 import useSong from "../../Hooks/UseSongContext";
@@ -8,6 +7,8 @@ import { secondsToMinutes } from "../../common/function";
 import Volume from "./Volume";
 import Controls from "./Controls";
 import SongSlider from "./SongSlider";
+import Modal from "../Util/Modal";
+import { DownloadSimple } from "@phosphor-icons/react";
 
 const UPDATE_SONG = gql`
   mutation MyMutation($id: ID!, $timesPlayed: Int!) {
@@ -42,6 +43,7 @@ const Player = () => {
     lastClickTime: 0,
     timePlayStart: 0,
     timePlayedMutation: false,
+    playbackRate: 1,
   });
 
   const handlePlayPause = () => {
@@ -139,6 +141,31 @@ const Player = () => {
         }));
       }
     }
+  };
+
+  // const handleSetPlaybackRate = (e) => {
+  //   console.log(e.target.value);
+  //   setStates((prevState) => ({
+  //     ...prevState,
+  //     playbackRate: parseFloat(e.target.value),
+  //   }));
+  // };
+
+  const handleDownloadSong = (url: string) => {
+    // Get file name from url.
+    const filename = url.substring(url.lastIndexOf("/") + 1).split("?")[0];
+    const xhr = new XMLHttpRequest();
+    xhr.responseType = "blob";
+    xhr.onload = function () {
+      const a = document.createElement("a");
+      a.href = window.URL.createObjectURL(xhr.response); // xhr.response is a blob
+      a.download = filename; // Set the file name.
+      a.style.display = "none";
+      document.body.appendChild(a);
+      a.click();
+    };
+    xhr.open("GET", url);
+    xhr.send();
   };
 
   useEffect(() => {
@@ -242,13 +269,19 @@ const Player = () => {
           />
 
           <div className="flex gap-4 justify-self-end">
-            <div className="cursor-pointer">
-              <ShareNetwork size={32} weight="fill" />
+            <div className={` ${song.title === "" ? "opacity-50" : ""}`}>
+              <Modal data={song} color="light" size={32} bottom="bottom-4" right="right-10" type="social" />
             </div>
 
-            <div className="cursor-pointer">
-              <DotsThreeOutlineVertical size={32} weight="fill" />
-            </div>
+            <button
+              onClick={() => {
+                handleDownloadSong(song.musicUrl);
+              }}
+              className={` ${song.title === "" ? "opacity-50" : ""}`}
+              disabled={song.title === ""}
+            >
+              <DownloadSimple size={32} color="#f5f5f5" weight="fill" />
+            </button>
           </div>
         </div>
 
@@ -259,6 +292,7 @@ const Player = () => {
             playing={songStates.playing}
             volume={states.volume}
             muted={states.muted}
+            playbackRate={states.playbackRate}
             onDuration={handleDuration}
             progressInterval={100}
             onProgress={handleProgress}
