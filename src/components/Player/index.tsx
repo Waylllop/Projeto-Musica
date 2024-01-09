@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { DotsThreeOutlineVertical, ShareNetwork } from "@phosphor-icons/react";
 import ReactPlayer from "react-player";
-import { useMutation, gql } from "@apollo/client";
+import { useMutation, gql, useApolloClient } from "@apollo/client";
 import useSong from "../../Hooks/UseSongContext";
 import usePlayingSong from "../../Hooks/UsePlayingSong";
 import { secondsToMinutes } from "../../common/function";
@@ -24,10 +24,11 @@ const UPDATE_SONG = gql`
 
 const Player = () => {
   const { songStates, setSongStates, setPlayingSong } = usePlayingSong();
-  const { song, setSong, songList, setSongList } = useSong();
+  const { song, setSong, songList } = useSong();
   const player = useRef<ReactPlayer | null>(null);
 
   const [updateSong] = useMutation(UPDATE_SONG);
+  const client = useApolloClient();
 
   const [states, setStates] = useState({
     seeking: false,
@@ -162,39 +163,41 @@ const Player = () => {
   }, [setPlayingSong, song]);
 
   useEffect(() => {
-    const updateTimesPlayed = (id: string, newTimesPlayed: number) => {
-      setSongList((prevSongs) =>
-        prevSongs.map((song) => (song.id === id ? { ...song, timesPlayed: newTimesPlayed } : song)),
-      );
-    };
-
     if (!states.timePlayedMutation && states.timePlayStart !== 0) {
       const timeNow = Date.now();
       const elapsedTime = (timeNow - states.timePlayStart) / 1000;
 
-      if (elapsedTime >= 20) {
-        const selectedSong = songList.find((music) => music.id === song.id);
+      if (elapsedTime >= 2) {
+        const handleTimesPlayed = async (id: string) => {
+          const { data } = await client.query({
+            query: gql`
+              query GetTimesPlayed($id: ID!) {
+                song(where: { id: $id }) {
+                  timesPlayed
+                }
+              }
+            `,
+            variables: { id },
+            fetchPolicy: "network-only",
+          });
 
-        if (!selectedSong) {
-          return;
-        }
+          setStates((prevState) => ({
+            ...prevState,
+            timePlayedMutation: true,
+          }));
 
-        setStates((prevState) => ({
-          ...prevState,
-          timePlayedMutation: true,
-        }));
+          updateSong({
+            variables: {
+              id: song.id,
+              timesPlayed: data.song.timesPlayed + 1,
+            },
+          });
+        };
 
-        updateTimesPlayed(song.id, selectedSong.timesPlayed + 1);
-
-        updateSong({
-          variables: {
-            id: song.id,
-            timesPlayed: selectedSong.timesPlayed + 1,
-          },
-        });
+        handleTimesPlayed(song.id);
       }
     }
-  }, [states, song, updateSong, setStates, songList, setSongList]);
+  }, [states, song, updateSong, client]);
 
   return (
     <div className="w-full">
