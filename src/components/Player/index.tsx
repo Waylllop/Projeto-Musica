@@ -8,7 +8,6 @@ import { secondsToMinutes } from "../../common/function";
 import Volume from "./Volume";
 import Controls from "./Controls";
 import SongSlider from "./SongSlider";
-import "./style.css";
 
 const UPDATE_SONG = gql`
   mutation MyMutation($id: ID!, $timesPlayed: Int!) {
@@ -217,14 +216,6 @@ const Player = () => {
             </div>
           </div>
 
-          <Volume
-            volume={states.volume}
-            volumeOpen={states.volumeOpen}
-            handleVolumeChange={handleVolumeChange}
-            setStates={setStates}
-            muted={states.muted}
-          />
-
           <Controls
             handlePreviousSong={handlePreviousSong}
             handlePlayPause={handlePlayPause}
@@ -237,6 +228,14 @@ const Player = () => {
             <span> / </span>
             <span>{secondsToMinutes(states.duration)}</span>
           </div>
+
+          <Volume
+            volume={states.volume}
+            volumeOpen={states.volumeOpen}
+            handleVolumeChange={handleVolumeChange}
+            setStates={setStates}
+            muted={states.muted}
+          />
 
           <div className="flex gap-4 justify-self-end">
             <div className="cursor-pointer">

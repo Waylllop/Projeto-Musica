@@ -38,7 +38,7 @@ const Work = () => {
   const [selectedGenreOptions, setSelectedGenreOptions] = useState<number[]>([]);
   const [selectedGenreFilters, setSelectedGenreFilters] = useState<string[]>([]);
 
-  const [typeModalOpen, setTypeModalOpen] = useState<boolean>(false);
+  const [typeModalOpen, setTypeModalOpen] = useState<boolean>(true);
   const [selectedTypeOptions, setSelectedTypeOptions] = useState<number[]>([]);
   const [selectedTypeFilters, setSelectedTypeFilters] = useState<string[]>([]);
 
@@ -168,15 +168,6 @@ const Work = () => {
                 setSelectedOptions={setSelectedAlbumOptions}
               />
             ) : null}
-          </div>
-
-          <div className="border-2 border-dark rounded-3xl mt-28">
-            <FilterButton
-              title="Sort"
-              onClick={() => {
-                console.log("Sort");
-              }}
-            />
           </div>
         </div>
       </div>

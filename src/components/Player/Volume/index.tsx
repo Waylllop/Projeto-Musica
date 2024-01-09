@@ -1,4 +1,4 @@
-import { SpeakerSimpleHigh, SpeakerSimpleLow, SpeakerSimpleNone, SpeakerSimpleSlash } from "@phosphor-icons/react";
+import { SpeakerSimpleHigh, SpeakerSimpleLow, SpeakerSimpleSlash } from "@phosphor-icons/react";
 
 interface VolumeProps {
   volume: number;
@@ -26,7 +26,7 @@ const Volume = ({ volume, volumeOpen, handleVolumeChange, setStates, muted }: Vo
   return (
     <>
       {volumeOpen ? (
-        <div className="absolute flex flex-col gap-8 justify-center items-center w-10 h-44 left-[30%] top-[-101px]">
+        <div className="absolute flex flex-col gap-8 justify-center items-center w-10 h-44 left-[37%] top-[-101px]">
           <div
             className="bg-dark w-40 p-3 pl-10 rounded-xl rotate-[270deg]"
             onMouseMove={() => setStates((prevState) => ({ ...prevState, volumeOpen: true }))}
@@ -55,14 +55,14 @@ const Volume = ({ volume, volumeOpen, handleVolumeChange, setStates, muted }: Vo
             ) : !muted && volume > 0 ? (
               <SpeakerSimpleLow size={32} weight="fill" />
             ) : !muted && volume === 0 ? (
-              <SpeakerSimpleNone size={32} weight="fill" />
+              <SpeakerSimpleSlash size={32} weight="fill" />
             ) : null}
           </div>
         </div>
       ) : null}
 
       {!volumeOpen ? (
-        <div className="absolute flex flex-col gap-8 justify-center items-center w-10 h-10 left-[30%]">
+        <div className="absolute flex flex-col gap-8 justify-center items-center w-10 h-10 left-[37%]">
           <div
             className="cursor-pointer z-10"
             onMouseMove={() => setStates((prevState) => ({ ...prevState, volumeOpen: true }))}
@@ -75,7 +75,7 @@ const Volume = ({ volume, volumeOpen, handleVolumeChange, setStates, muted }: Vo
             ) : !muted && volume > 0 ? (
               <SpeakerSimpleLow size={32} weight="fill" />
             ) : !muted && volume === 0 ? (
-              <SpeakerSimpleNone size={32} weight="fill" />
+              <SpeakerSimpleSlash size={32} weight="fill" />
             ) : null}
           </div>
         </div>

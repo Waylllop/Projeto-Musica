@@ -27,15 +27,6 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-// const httpLink = createHttpLink({
-//   uri: "https://api-sa-east-1.hygraph.com/v2/clqpoqfjy1ux101un6a2w61pa/master",
-// });
-
-// const client = new ApolloClient({
-//   link: httpLink,
-//   cache: new InMemoryCache(),
-// });
-
 function App() {
   return (
     <ApolloProvider client={client}>
