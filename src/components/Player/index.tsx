@@ -167,7 +167,7 @@ const Player = () => {
       const timeNow = Date.now();
       const elapsedTime = (timeNow - states.timePlayStart) / 1000;
 
-      if (elapsedTime >= 2) {
+      if (elapsedTime >= 20) {
         const handleTimesPlayed = async (id: string) => {
           const { data } = await client.query({
             query: gql`
