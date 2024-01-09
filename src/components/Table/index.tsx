@@ -41,7 +41,7 @@ const Table = ({ songs }: TableProps) => {
 
     columnHelper.accessor("title", {
       cell: (info) => (
-        <div className="flex flex-col gap-2 mt-2">
+        <div className="flex flex-col gap-2 mt-2 w-60">
           <span className="text-2xl">{info.getValue()}</span>
           <span>{`${info.row.original.artist}`}</span>
         </div>
@@ -50,17 +50,17 @@ const Table = ({ songs }: TableProps) => {
     }),
 
     columnHelper.accessor("genre", {
-      cell: (info) => <span className="mt-2 block">{info.getValue()}</span>,
+      cell: (info) => <span className="mt-2 block w-24">{info.getValue()}</span>,
       header: "Genre",
     }),
 
     columnHelper.accessor("album", {
-      cell: (info) => <span className="mt-2 block">{info.getValue()}</span>,
+      cell: (info) => <span className="mt-2 block w-24">{info.getValue()}</span>,
       header: "Album",
     }),
 
     columnHelper.accessor("type", {
-      cell: (info) => <span className="mt-2 block">{info.getValue()}</span>,
+      cell: (info) => <span className="mt-2 block w-16">{info.getValue()}</span>,
       header: "Type",
     }),
 
