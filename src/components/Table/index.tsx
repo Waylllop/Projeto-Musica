@@ -4,6 +4,7 @@ import usePlayingSong from "../../Hooks/UsePlayingSong";
 import { secondsToMinutes } from "../../common/function";
 import { song } from "../../common/interfices";
 import { Play } from "@phosphor-icons/react";
+import Modal from "../Util/Modal";
 import BarAnimation from "../Util/BarAnimation";
 import "./style.css";
 
@@ -38,11 +39,6 @@ const Table = ({ songs }: TableProps) => {
       header: "",
     }),
 
-    columnHelper.accessor("timesPlayed", {
-      cell: (info) => <span className="mt-2 block">{info.getValue().toLocaleString("pt-BR")}</span>,
-      header: "Plays",
-    }),
-
     columnHelper.accessor("title", {
       cell: (info) => (
         <div className="flex flex-col gap-2 mt-2">
@@ -74,8 +70,8 @@ const Table = ({ songs }: TableProps) => {
     }),
 
     columnHelper.accessor("soundcloudUrl", {
-      cell: "",
-      header: "social",
+      cell: ({ row }: { row: { original: song } }) => <Modal data={row.original} />,
+      header: "Social",
     }),
   ];
 
@@ -102,7 +98,8 @@ const Table = ({ songs }: TableProps) => {
         {table.getRowModel().rows.map((row) => (
           <tr
             key={row.id}
-            onClick={() => {
+            onClick={(e) => {
+              e.stopPropagation();
               setSong(row.original);
               setSongStates((prevState) => ({
                 ...prevState,
