@@ -21,11 +21,7 @@ const Header = () => {
     function handleResize() {
       setWindowWidth(window.innerWidth);
     }
-
-    // Adiciona um ouvinte de evento de redimensionamento da janela
     window.addEventListener("resize", handleResize);
-
-    // Remove o ouvinte de evento quando o componente é desmontado
     return () => {
       window.removeEventListener("resize", handleResize);
     };

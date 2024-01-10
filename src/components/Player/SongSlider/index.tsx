@@ -20,8 +20,10 @@ const SongSlider = ({ played, handleSeekMouseDown, handleSeekChange, handleSeekM
         step="any"
         value={played}
         onMouseDown={handleSeekMouseDown}
+        onTouchStart={handleSeekMouseDown}
         onChange={handleSeekChange}
         onMouseUp={handleSeekMouseUp}
+        onTouchEnd={handleSeekMouseUp}
       />
       <output></output>
       <div className="range-slider__progress"></div>

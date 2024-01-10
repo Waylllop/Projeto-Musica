@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { song } from "../../common/interfices";
 import { EffectCoverflow, Navigation, Pagination } from "swiper/modules";
@@ -21,6 +21,23 @@ const Carousel = ({ songs, setActiveSong }: CarouselProps) => {
   const { playingSong, songStates, setSongStates } = usePlayingSong();
   const { setSong } = useSong();
   const [showPlayIcon, setShowPlayIcon] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowWidth(window.innerWidth);
+    }
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (windowWidth < 1024) {
+      setShowPlayIcon(true);
+    }
+  }, [windowWidth]);
 
   return (
     <Swiper
