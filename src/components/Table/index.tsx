@@ -71,7 +71,7 @@ const Table = ({ songs }: TableProps) => {
 
     columnHelper.accessor("soundcloudUrl", {
       cell: ({ row }: { row: { original: song } }) => (
-        <Modal data={row.original} color="dark" size={24} top="top-0" right="right-14" type="social" />
+        <Modal data={row.original} color="dark" size={24} style="top-0 left-[-170px]" />
       ),
       header: "Social",
     }),

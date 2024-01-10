@@ -270,7 +270,7 @@ const Player = () => {
 
           <div className="flex gap-4 justify-self-end">
             <div className={` ${song.title === "" ? "opacity-50" : ""}`}>
-              <Modal data={song} color="light" size={32} bottom="bottom-4" right="right-10" type="social" />
+              <Modal data={song} color="light" size={32} style="bottom-4 right-10" />
             </div>
 
             <button
