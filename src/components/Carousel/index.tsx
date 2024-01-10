@@ -63,13 +63,13 @@ const Carousel = ({ songs, setActiveSong }: CarouselProps) => {
                   <img
                     src={song.artworkUrl}
                     alt={song.title}
-                    className="rounded-[48px] h-[400px] w-[400px] brightness-100 duration-1000 object-cover"
+                    className="rounded-[48px] brightness-100 duration-1000 object-cover "
                   />
                   {playingSong.id === song.id && songStates.playing ? (
                     <BarAnimation bgSize="44" barSize="20" />
                   ) : showPlayIcon ? (
-                    <div className="w-44 h-44 absolute flex justify-center items-center bg-light rounded-full opacity-90 pr-1">
-                      <Play size={100} className="text-dark" weight="fill" />
+                    <div className="w-24 h-24 md:w-32 md:h-32 lg:w-44 lg:h-44 absolute flex justify-center items-center bg-light rounded-full opacity-90 pr-1">
+                      <Play className="text-dark w-10 h-10 md:w-16 md:h-16 lg:w-24 lg:h-24" weight="fill" />
                     </div>
                   ) : null}
                 </div>
@@ -78,7 +78,7 @@ const Carousel = ({ songs, setActiveSong }: CarouselProps) => {
                   <img
                     src={song.artworkUrl}
                     alt={song.title}
-                    className="rounded-[48px] h-[400px] w-[400px] brightness-50 duration-500 object-cover"
+                    className="rounded-[48px] brightness-50 duration-500 object-cover"
                   />
                 </div>
               )}

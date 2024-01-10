@@ -5,8 +5,8 @@ import Releases from "../Releases";
 const Home = () => {
   return (
     <>
-      <section className="grid grid-cols-12 pt-20">
-        <p className="col-start-4 col-end-9 text-3xl text-darkColor">
+      <section className="md:grid md:grid-cols-12 pt-6 md:pt-14 lg:pt-20">
+        <p className="col-start-4 md:col-end-10 text-darkColor text-xl md:text-2xl lg:col-end-9 lg:text-3xl ">
           Music producer, synthesis and sound designer, focused on electronic stuff. Based in São Paulo. Available for
           remote-friendly freelance work.
         </p>

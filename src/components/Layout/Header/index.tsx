@@ -33,12 +33,10 @@ const Header = () => {
 
   return (
     <>
-      <div className={`bg-dark flex justify-between px-16 py-4 fixed w-[calc(100vw-80px)] z-20`}>
+      <div className="bg-dark flex justify-between px-0 py-4 fixed w-full z-20 lg:pr-32 lg:pl-16">
         <NavLink
           to="/home"
-          className={({ isActive }) =>
-            `font-coustard text-primary text-4xl ${isActive ? "duration-200" : "hover:text-[#fcc46a] duration-200]"}`
-          }
+          className="font-coustard text-primary text-3xl px-6 md:px-0 lg:hover:text-[#fcc46a] lg:text-4xl lg:duration-200"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
           LL
@@ -52,15 +50,15 @@ const Header = () => {
       {windowWidth < 1024 ? <MenuMobile /> : null}
 
       {!isSongsOpen ? (
-        <div className="grid grid-cols-12 py-10">
-          <div className="col-start-4 col-end-12 flex flex-col gap-8 text-6xl font-coustard text-primary pt-10">
+        <div className="py-10 px-6 md:px-0 md:grid md:grid-cols-12">
+          <div className=" flex flex-col gap-4 font-coustard text-primary pt-8 text-4xl md:text-5xl md:col-start-4 md:col-end-12 md:gap-8 lg:pt-10 lg:text-6xl ">
             <h1>yLLop</h1>
             <h1>Music &</h1>
             <h1>Synthesis</h1>
           </div>
         </div>
       ) : null}
-      {isSongsOpen ? <div className="grid grid-cols-12 py-10"></div> : null}
+      {isSongsOpen ? <div className="py-10"></div> : null}
     </>
   );
 };

@@ -41,12 +41,12 @@ const Releases = () => {
   }, [data, setSongList]);
 
   return (
-    <section className="scroll-smooth mx-16 mt-20 border-t-4 border-dark">
-      <div className="flex flex-row my-10 items-center gap-4 justify-between">
-        <h1 className="text-5xl font-bold">Work</h1>
+    <section className="scroll-smooth mt-6 md:mx-10 md:mt-10 lg:mx-16 lg:mt-20 border-t-4 border-dark">
+      <div className="flex flex-row items-center gap-4 justify-between my-4 md:my-6 lg:my-10">
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold">Work</h1>
         <NavLink
           to="/work"
-          className="bg-dark text-light text-3xl border-2 border-dark rounded-3xl px-10 py-2 hover:text-[#FBB13C] duration-200"
+          className="bg-dark text-light border-2 border-dark rounded-3xl mt-2 py-2 text-xl px-6 md:px-10  md:text-2xl lg:text-3xl lg:hover:text-[#FBB13C] lg:duration-200"
         >
           See More
         </NavLink>
@@ -54,16 +54,16 @@ const Releases = () => {
 
       <Loader loading={loading} />
 
-      {error ? <p className="text-3xl">Something went wrong, please try again later.</p> : null}
+      {error ? <p className="text-xl md:text-3xl">Something went wrong, please try again later.</p> : null}
 
       {!loading && !error && data ? (
-        <div className="grid grid-cols-[minmax(200px,30%)_1fr]">
-          <div className="flex flex-col justify-between">
-            <div className="flex flex-col gap-4">
+        <div className="md:grid md:grid-cols-[minmax(200px,30%)_1fr]">
+          <div className="flex flex-col justify-between mb-6 md:mb-0">
+            <div className="grid grid-cols-[minmax(200px,70%)_1fr] md:flex md:flex-col md:gap-4">
               <Info title="Title" data={activeSong?.title} />
               <Info title="Artist" data={activeSong?.artist} />
-              <Info title="Genre" data={activeSong?.genre} />
-              <Info title="Album" data={activeSong?.album} />
+              <Info title="Genre" data={activeSong?.genre} style="hidden md:block" />
+              <Info title="Album" data={activeSong?.album} style="hidden md:block" />
             </div>
           </div>
 

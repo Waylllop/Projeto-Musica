@@ -9,6 +9,20 @@
   height: 450px;
 }
 
+@media (max-width: 1024px) {
+  .swiper-slide {
+    width: 300px;
+    height: 350px;
+  }
+}
+
+@media (max-width: 768px) {
+  .swiper-slide {
+    width: 250px;
+    height: 300px;
+  }
+}
+
 .swiper-slide img {
   display: block;
   width: 100%;
@@ -39,4 +53,13 @@
 
 .swiper-pagination-bullet-active {
   background-color: #1b2021;
+}
+
+@media (max-width: 1024px) {
+  .swiper-button-next {
+    display: none;
+  }
+  .swiper-button-prev {
+    display: none;
+  }
 }
