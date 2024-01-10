@@ -236,7 +236,7 @@ const Player = () => {
           // @ts-expect-error expected any
           handleSeekMouseUp={handleSeekMouseUp}
         />
-        <div className="relative h-16 px-12 min-[550px]:px-10 md:px-14 grid justify-center items-center mt-[-28px] md:mt-[-24px] grid-cols-[45%_1fr_45%] md:grid-cols-[35%_1fr_20%_15%] lg:grid-cols-[40%_1fr_25%_15%]">
+        <div className="relative h-16 px-12 min-[550px]:px-10 md:px-14 grid justify-center items-center mt-[-28px] lg:mt-[-24px] grid-cols-[45%_1fr_45%] md:grid-cols-[35%_1fr_20%_15%] lg:grid-cols-[40%_1fr_25%_15%]">
           <div className="flex gap-4 items-center">
             <img src={song.artworkUrl} alt={song.title} className="h-12 rounded-lg hidden md:block" />
 
@@ -276,7 +276,7 @@ const Player = () => {
               onClick={() => {
                 handleDownloadSong(song.musicUrl);
               }}
-              className={` ${song.title === "" ? "opacity-50" : ""}`}
+              className={`hidden lg:block ${song.title === "" ? "opacity-50" : ""}`}
               disabled={song.title === ""}
             >
               <DownloadSimple size={32} color="#f5f5f5" weight="fill" />
