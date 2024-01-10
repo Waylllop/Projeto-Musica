@@ -4,9 +4,10 @@ import { Link as ScrollLink } from "react-scroll";
 
 interface MenuLinksProps {
   type: "vertical" | "horizontal";
+  closeMenu: () => void;
 }
 
-const MenuLinks = ({ type }: MenuLinksProps) => {
+const MenuLinks = ({ type, closeMenu }: MenuLinksProps) => {
   const location = useLocation();
   const [isSongsOpen, setIsSongsOpen] = useState(false);
 
@@ -25,7 +26,10 @@ const MenuLinks = ({ type }: MenuLinksProps) => {
           className={({ isActive }) =>
             isActive ? "text-primary duration-200" : "text-light hover:text-[#fcc46a] duration-200"
           }
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          onClick={() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            closeMenu();
+          }}
         >
           Home
         </NavLink>
@@ -36,7 +40,10 @@ const MenuLinks = ({ type }: MenuLinksProps) => {
           className={({ isActive }) =>
             isActive ? "text-primary duration-200" : "text-light hover:text-[#fcc46a] duration-200"
           }
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          onClick={() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            closeMenu();
+          }}
         >
           Work
         </NavLink>
@@ -51,6 +58,7 @@ const MenuLinks = ({ type }: MenuLinksProps) => {
               offset={-100}
               duration={1000}
               className="text-light cursor-pointer hover:text-[#fcc46a]"
+              onClick={() => closeMenu()}
             >
               About
             </ScrollLink>
@@ -63,6 +71,7 @@ const MenuLinks = ({ type }: MenuLinksProps) => {
               offset={-100}
               duration={1000}
               className="text-light cursor-pointer hover:text-[#fcc46a]"
+              onClick={() => closeMenu()}
             >
               Contact
             </ScrollLink>

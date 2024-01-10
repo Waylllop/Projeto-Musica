@@ -181,7 +181,7 @@ const Work = () => {
 
           {selectedGenreOptions.length > 0 || selectedTypeOptions.length > 0 || selectedAlbumOptions.length > 0 ? (
             <button className="border-2 border-dark rounded-3xl px-4 py-1 self-end" onClick={() => resetFilters()}>
-              Reset Filters
+              Clear Filters
             </button>
           ) : null}
         </div>

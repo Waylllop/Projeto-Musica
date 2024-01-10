@@ -44,7 +44,9 @@ const Header = () => {
           LL
         </NavLink>
 
-        <nav className="flex items-center">{windowWidth > 1024 ? <MenuLinks type="horizontal" /> : null}</nav>
+        <nav className="flex items-center">
+          {windowWidth > 1024 ? <MenuLinks type="horizontal" closeMenu={() => {}} /> : null}
+        </nav>
       </div>
 
       {windowWidth < 1024 ? <MenuMobile /> : null}
