@@ -213,7 +213,6 @@ const Player = () => {
             fetchPolicy: "network-only",
           });
 
-          console.log("teste");
           updateSong({
             variables: {
               id: song.id,
@@ -237,13 +236,13 @@ const Player = () => {
           // @ts-expect-error expected any
           handleSeekMouseUp={handleSeekMouseUp}
         />
-        <div className="relative h-16 px-14 grid grid-cols-[40%_1fr_25%_15%] justify-center items-center mt-[-24px]">
+        <div className="relative h-16 px-12 min-[550px]:px-10 md:px-14 grid justify-center items-center mt-[-24px] grid-cols-[45%_1fr_45%] md:grid-cols-[35%_1fr_20%_15%] lg:grid-cols-[40%_1fr_25%_15%]">
           <div className="flex gap-4 items-center">
-            <img src={song.artworkUrl} alt={song.title} className="h-12 rounded-lg" />
+            <img src={song.artworkUrl} alt={song.title} className="h-12 rounded-lg hidden md:block" />
 
             <div className="flex flex-col">
-              <span className="text-2xl font-bold">{song.title}</span>
-              <span className="text-xl mt-[-6px]">{song.artist}</span>
+              <span className="md:text-xl lg:text-2xl font-bold">{song.title}</span>
+              <span className="lg:text-xl mt-[-6px]">{song.artist}</span>
             </div>
           </div>
 
@@ -254,7 +253,7 @@ const Player = () => {
             playing={songStates.playing}
           />
 
-          <div className="text-xl">
+          <div className="text-lg md:text-xl justify-self-end md:justify-self-center">
             <span>{secondsToMinutes(states.playedSeconds)}</span>
             <span> / </span>
             <span>{secondsToMinutes(states.duration)}</span>
@@ -268,7 +267,7 @@ const Player = () => {
             muted={states.muted}
           />
 
-          <div className="flex gap-4 justify-self-end">
+          <div className="gap-4 justify-self-end hidden md:flex">
             <div className={` ${song.title === "" ? "opacity-50" : ""}`}>
               <Modal data={song} color="light" size={32} style="bottom-4 right-10" />
             </div>

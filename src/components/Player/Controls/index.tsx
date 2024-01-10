@@ -9,24 +9,24 @@ interface ControlsProps {
 
 const Controls = ({ handlePreviousSong, handlePlayPause, handleNextSong, playing }: ControlsProps) => {
   return (
-    <div className="flex gap-4 items-center justify-self-center">
+    <div className="flex gap-2 md:gap-4 items-center justify-self-center">
       <div className="cursor-pointer" onClick={handlePreviousSong}>
-        <SkipBack size={32} weight="fill" />
+        <SkipBack className="w-5 h-5 md:w-8 md:h-8" weight="fill" />
       </div>
 
       <div
-        className="w-12 h-12 flex justify-center items-center bg-light rounded-full cursor-pointer"
+        className="w-10 h-10 md:w-12 md:h-12 flex justify-center items-center bg-light rounded-full cursor-pointer"
         onClick={handlePlayPause}
       >
         {playing ? (
-          <Pause size={32} className="text-dark" weight="fill" />
+          <Pause className="text-dark w-6 h-6 md:w-8 md:h-8" weight="fill" />
         ) : (
-          <Play size={32} className="text-dark" weight="fill" />
+          <Play className="text-dark w-6 h-6 md:w-8 md:h-8" weight="fill" />
         )}
       </div>
 
       <div className="cursor-pointer" onClick={handleNextSong}>
-        <SkipForward size={32} weight="fill" />
+        <SkipForward className="w-5 h-5 md:w-8 md:h-8" weight="fill" />
       </div>
     </div>
   );

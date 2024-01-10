@@ -1,15 +1,16 @@
 const Contact = () => {
   return (
-    <section id="contact" className="scroll-smooth mx-16 mt-20 border-t-4 border-dark pb-20">
-      <h1 className="mt-10 text-5xl font-bold mb-10">Contact</h1>
-      <h2 className="text-6xl font-bold mb-10">Have some idea in mind?</h2>
-      <div className="grid grid-cols-[minmax(500px,50%)_1fr] gap-40">
-        <div className="text-dark text-2xl flex flex-col gap-10">
+    <section
+      id="contact"
+      className="scroll-smooth border-t-4 border-dark pb-6 md:pb-10 md:mx-10 md:mt-10 lg:pb-20 lg:mx-16 lg:mt-20"
+    >
+      <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold my-4 md:my-6 lg:my-10">Contact</h1>
+      <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-10">Have some idea in mind?</h2>
+      <div className="md:grid md:grid-cols-[minmax(400px,50%)_1fr] lg:grid-cols-[minmax(500px,50%)_1fr] md:gap-20 lg:gap-40">
+        <div className="text-dark text-xl md:text-2xl flex flex-col gap-6 md:gap-10">
           <p>
             You can send details about your project directly to{" "}
-            <span className="font-bold underline">
-              yllopmusic@gmail.com.
-            </span>
+            <span className="font-bold underline">yllopmusic@gmail.com.</span>
           </p>
 
           <p>
@@ -20,12 +21,12 @@ const Contact = () => {
           <p>Currently based in São Paulo, Brazil — available for remote-friendly work.</p>
         </div>
 
-        <div className="flex flex-col text-2xl">
+        <div className=" flex flex-col text-xl mt-6 md:mt-0 md:text-2xl">
           <span>
             <a
               href="https://open.spotify.com/artist/3xVMQnRMwi2bL5pzSpBL0H?si=lBFdneLySYaKDS4CbwKlYw"
               target="_blank"
-              className="font-bold underline hover:text-secondary"
+              className="font-bold underline lg:hover:text-secondary"
             >
               Spotify
             </a>
@@ -34,20 +35,24 @@ const Contact = () => {
             <a
               href="https://www.youtube.com/@yllopmusic6770"
               target="_blank"
-              className="font-bold underline hover:text-secondary"
+              className="font-bold underline lg:hover:text-secondary"
             >
               Youtube
             </a>
           </span>
           <span>
-            <a href="https://soundcloud.com/yllop" target="_blank" className="font-bold underline hover:text-secondary">
+            <a
+              href="https://soundcloud.com/yllop"
+              target="_blank"
+              className="font-bold underline lg:hover:text-secondary"
+            >
               Soundcloud
             </a>
           </span>
           <span>
             <a
               href="https://waylllop.github.io/MusicasMp3/identidade-visual/curriculum-en.pdf"
-              className="font-bold underline hover:text-secondary"
+              className="font-bold underline lg:hover:text-secondary"
               target="_blank"
             >
               Curriculum

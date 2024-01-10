@@ -1,17 +1,17 @@
 const About = () => {
   return (
-    <section id="about" className="scroll-smooth mx-16 mt-20 border-t-4 border-dark">
-      <h1 className="mt-10 text-5xl font-bold mb-10">About</h1>
-      <div className="grid grid-cols-[minmax(200px,45%)_1fr] gap-10">
-        <div className="bg-dark ml-[-64px] pl-16 py-10 pr-10 rounded-r-[48px]">
-          <p className="text-4xl text-light leading-[3.5rem]">
+    <section id="about" className="scroll-smooth border-t-4 border-dark mt-6 md:mt-10 md:mx-10 lg:mx-16 lg:mt-20 ">
+      <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold my-4 md:my-6 lg:my-10">About</h1>
+      <div className="md:grid md:grid-cols-[minmax(200px,45%)_1fr] gap-6 lg:gap-10">
+        <div className="bg-dark ml-[-64px] mr-[-24px] md:mr-0 px-16 py-10 lg:pr-10 md:rounded-r-[48px]">
+          <p className="text-2xl md:text-3xl lg:text-4xl text-light md:leading-[2.5rem] lg:leading-[3.5rem]">
             I’m Felipe — a music producer and sound designer with over 5 years of study and practices in the field. I
             care a lot about sounds and using them to form an experience to the listener. Currently based in São Paulo,
             Brazil.
           </p>
         </div>
 
-        <div className="py-10 text-dark text-2xl flex flex-col gap-4">
+        <div className="py-6 md:py-10 text-dark text-xl lg:text-2xl flex flex-col gap-4">
           <p>
             I've been working with audio since I was little, mostly for curiosity about music production and as a plus
             to help me learn musical instruments, such as guitar, drums and bass.

@@ -66,10 +66,13 @@ const Carousel = ({ songs, setActiveSong }: CarouselProps) => {
                     className="rounded-[48px] brightness-100 duration-1000 object-cover "
                   />
                   {playingSong.id === song.id && songStates.playing ? (
-                    <BarAnimation bgSize="44" barSize="20" />
+                    <BarAnimation
+                      bgSize="w-24 h-24 md:w-32 md:h-32 lg:w-44 lg:h-44"
+                      barSize=" w-12 h-12 md:w-16 md:h-16 lg:w-24 lg:h-24"
+                    />
                   ) : showPlayIcon ? (
                     <div className="w-24 h-24 md:w-32 md:h-32 lg:w-44 lg:h-44 absolute flex justify-center items-center bg-light rounded-full opacity-90 pr-1">
-                      <Play className="text-dark w-10 h-10 md:w-16 md:h-16 lg:w-24 lg:h-24" weight="fill" />
+                      <Play className="text-dark w-12 h-12 md:w-16 md:h-16 lg:w-24 lg:h-24" weight="fill" />
                     </div>
                   ) : null}
                 </div>

@@ -27,7 +27,7 @@ const Volume = ({ volume, volumeOpen, handleVolumeChange, setStates, muted }: Vo
   return (
     <>
       {volumeOpen ? (
-        <div className="absolute flex flex-col gap-8 justify-center items-center w-10 h-44 left-[37%] top-[-101px]">
+        <div className="absolute hidden md:flex flex-col gap-8 justify-center items-center w-10 h-44 left-[32%] lg:left-[37%] top-[-101px]">
           <div
             className="bg-dark w-40 p-3 pl-10 rounded-xl rotate-[270deg]"
             onMouseMove={() => setStates((prevState) => ({ ...prevState, volumeOpen: true }))}
@@ -63,7 +63,7 @@ const Volume = ({ volume, volumeOpen, handleVolumeChange, setStates, muted }: Vo
       ) : null}
 
       {!volumeOpen ? (
-        <div className="absolute flex flex-col gap-8 justify-center items-center w-10 h-10 left-[37%]">
+        <div className="absolute hidden md:flex flex-col gap-8 justify-center items-center w-10 h-10 left-[32%] lg:left-[37%]">
           <div
             className="cursor-pointer z-10"
             onMouseMove={() => setStates((prevState) => ({ ...prevState, volumeOpen: true }))}
