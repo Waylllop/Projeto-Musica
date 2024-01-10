@@ -13,6 +13,12 @@ input[type="range"] {
   --clip-edges: 0.125em;
 }
 
+@media (max-width: 1024px) {
+  input[type="range"] {
+    --thumb-height: 1.25rem;
+  }
+}
+
 /* === range commons === */
 input[type="range"] {
   /* position: relative; */
