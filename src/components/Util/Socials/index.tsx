@@ -12,7 +12,7 @@ const Socials = ({ data, setModalOpen }: SocialsProps) => {
   };
 
   return (
-    <div className="flex flex-col gap-2 bg-dark text-light px-6 py-4 rounded-lg">
+    <div className="flex flex-col gap-2 bg-dark text-light px-6 py-4 rounded-lg w-[165px]">
       {data.spotifyUrl ? (
         <a
           href={data.spotifyUrl}
