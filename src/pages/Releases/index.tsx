@@ -59,7 +59,7 @@ const Releases = () => {
       {!loading && !error && data ? (
         <div className="md:grid md:grid-cols-[minmax(200px,30%)_1fr]">
           <div className="flex flex-col justify-between mb-6 md:mb-0">
-            <div className="grid grid-cols-[minmax(200px,70%)_1fr] md:flex md:flex-col md:gap-4">
+            <div className="grid grid-cols-[minmax(200px,60%)_1fr] md:flex md:flex-col md:gap-4">
               <Info title="Title" data={activeSong?.title} />
               <Info title="Artist" data={activeSong?.artist} />
               <Info title="Genre" data={activeSong?.genre} style="hidden md:block" />

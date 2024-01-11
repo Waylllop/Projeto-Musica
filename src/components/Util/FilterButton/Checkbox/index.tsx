@@ -49,7 +49,7 @@ const Checkbox = ({
             checked={selectedOptions.includes(Number(option.id))}
             onChange={handleCheckboxChange}
           />
-          {option.name}
+          {option.name.substring(0, 14)}
         </label>
       ))}
     </div>

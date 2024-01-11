@@ -241,8 +241,12 @@ const Player = () => {
             <img src={song.artworkUrl} alt={song.title} className="h-12 rounded-lg hidden md:block" />
 
             <div className="flex flex-col">
-              <span className="md:text-xl lg:text-2xl font-bold">{song.title}</span>
-              <span className="lg:text-xl mt-[-6px]">{song.artist}</span>
+              <span className="w-32 min-[450px]:w-40 lg:w-56 min-[1300px]:w-80 md:text-xl lg:text-2xl font-bold truncate">
+                {song.title}
+              </span>
+              <span className="w-32 min-[450px]:w-40 lg:w-56 min-[1300px]:w-80 lg:text-xl mt-[-6px] truncate">
+                {song.artist}
+              </span>
             </div>
           </div>
 
