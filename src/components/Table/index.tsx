@@ -67,7 +67,7 @@ const Table = ({ songs }: TableProps) => {
       });
     }
 
-    if (width < 450) {
+    if (width < 530) {
       setColumnState({
         artworkUrl: true,
         title: true,

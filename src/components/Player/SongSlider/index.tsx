@@ -9,7 +9,7 @@ interface SongSlider {
 
 const SongSlider = ({ played, handleSeekMouseDown, handleSeekChange, handleSeekMouseUp }: SongSlider) => {
   return (
-    <div className="range-slider relative top-[-10px] z-30">
+    <div className="range-slider relative top-[-10px] z-10">
       <input
         className="w-full cursor-pointer text-secondary"
         type="range"

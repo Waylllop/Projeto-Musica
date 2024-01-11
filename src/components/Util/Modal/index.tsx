@@ -50,9 +50,12 @@ const Modal = ({ data, color, size, style }: ModalProps) => {
         <Link size={size} className={`text-${color}`} weight="bold" />
       </button>
       {modalOpen && (
-        <div className={`absolute z-30 ${style}`} ref={menuRef}>
-          <Socials data={data} setModalOpen={setModalOpen} />
-        </div>
+        <>
+          <div className="fixed top-0 left-0 z-20 w-full h-full flex justify-center items-center bg-[rgba(0,0,0,0.3)]"></div>
+          <div className={`absolute z-30 ${style}`} ref={menuRef}>
+            <Socials data={data} setModalOpen={setModalOpen} />
+          </div>
+        </>
       )}
     </div>
   );
