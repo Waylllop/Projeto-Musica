@@ -5,18 +5,12 @@ input[type="range"] {
 
 input[type="range"] {
   /* color: #895B1E; */
-  --thumb-height: 0.75em;
+  --thumb-height: 1.25rem;
   --track-height: 0.1em;
   --track-color: rgba(0, 0, 0, 0.1);
   /* --brightness-hover: 120%;
 	--brightness-down: 80%; */
   --clip-edges: 0.125em;
-}
-
-@media (max-width: 1024px) {
-  input[type="range"] {
-    --thumb-height: 1.25rem;
-  }
 }
 
 /* === range commons === */

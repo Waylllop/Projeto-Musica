@@ -20,39 +20,62 @@ const Table = ({ songs }: TableProps) => {
 
   // const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [columnState, setColumnState] = useState({
-    genre: true,
-    album: true,
-    type: true,
-    playtime: true,
+    artworkUrl: false,
+    title: false,
+    genre: false,
+    album: false,
+    type: false,
+    playtime: false,
+    webUrl: false,
   });
 
   useEffect(() => {
     const width = window.innerWidth;
+    if (width > 950) {
+      setColumnState({
+        artworkUrl: true,
+        title: true,
+        genre: true,
+        album: true,
+        type: true,
+        playtime: true,
+        webUrl: true,
+      });
+    }
 
     if (width < 950) {
       setColumnState({
+        artworkUrl: true,
+        title: true,
         genre: true,
         album: true,
         type: true,
         playtime: false,
+        webUrl: true,
       });
     }
 
     if (width < 768) {
       setColumnState({
+        artworkUrl: true,
+        title: true,
         genre: true,
         album: true,
         type: false,
         playtime: false,
+        webUrl: true,
       });
     }
 
     if (width < 450) {
       setColumnState({
+        artworkUrl: true,
+        title: true,
         genre: false,
         album: false,
         type: false,
         playtime: false,
+        webUrl: true,
       });
     }
   }, []);
@@ -125,10 +148,13 @@ const Table = ({ songs }: TableProps) => {
 
   const state = {
     columnVisibility: {
+      artworkUrl: columnState.artworkUrl,
+      title: columnState.title,
       genre: columnState.genre,
       album: columnState.album,
       type: columnState.type,
       playtime: columnState.playtime,
+      webUrl: columnState.webUrl,
     },
   };
 
