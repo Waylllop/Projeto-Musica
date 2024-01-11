@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import useSong from "../../Hooks/UseSongContext";
 import usePlayingSong from "../../Hooks/UsePlayingSong";
@@ -17,20 +18,74 @@ const Table = ({ songs }: TableProps) => {
   const { setSong } = useSong();
   const columnHelper = createColumnHelper<song>();
 
+  // const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [columnState, setColumnState] = useState({
+    artworkUrl: true,
+    title: true,
+    genre: true,
+    album: true,
+    type: true,
+    playtime: true,
+    webUrl: true,
+  });
+
+  useEffect(() => {
+    const width = window.innerWidth;
+
+    if (width < 950) {
+      setColumnState({
+        artworkUrl: true,
+        title: true,
+        genre: true,
+        album: true,
+        type: true,
+        playtime: false,
+        webUrl: true,
+      });
+    }
+
+    if (width < 768) {
+      setColumnState({
+        artworkUrl: true,
+        title: true,
+        genre: true,
+        album: true,
+        type: false,
+        playtime: false,
+        webUrl: true,
+      });
+    }
+
+    if (width < 450) {
+      setColumnState({
+        artworkUrl: true,
+        title: true,
+        genre: false,
+        album: false,
+        type: false,
+        playtime: false,
+        webUrl: true,
+      });
+    }
+  }, []);
+
   const columns = [
     columnHelper.accessor("artworkUrl", {
       cell: (info) => (
-        <div className="flex items-center justify-center relative">
+        <div className="flex items-center lg:justify-center relative">
           <img
-            className="w-20 h-20 object-cover rounded-xl m-2"
+            className="w-14 h-14 md:w-20 md:h-20 object-cover rounded-xl mt-2"
             src={info.getValue()}
             alt={`${info.row.original.title}`}
           />
 
           {playingSong.id === info.row.original.id && songStates.playing ? (
-            <BarAnimation bgSize="14" barSize="10" />
+            <BarAnimation
+              bgSize=" ml-2 md:ml-3 lg:ml-0 w-10 h-10 md:w-14 md:h-14 mt-2"
+              barSize=" w-8 h-8 md:w-10 md:h-10"
+            />
           ) : (
-            <div className="playIcon w-14 h-14 absolute justify-center items-center bg-light rounded-full opacity-90">
+            <div className="md:ml-3 lg:ml-0 playIcon w-14 h-14 absolute justify-center items-center bg-light rounded-full opacity-90 mt-2">
               <Play size={28} className="text-dark" weight="fill" />
             </div>
           )}
@@ -41,9 +96,12 @@ const Table = ({ songs }: TableProps) => {
 
     columnHelper.accessor("title", {
       cell: (info) => (
-        <div className="flex flex-col gap-2 mt-2 w-60">
-          <span className="text-2xl truncate">{info.getValue()}</span>
-          <span className="truncate">{`${info.row.original.artist}`}</span>
+        <div className="flex flex-col md:gap-2 mt-2 w-36 md:w-48 lg:w-60">
+          <span className="text-xl md:text-2xl truncate">{info.getValue()}</span>
+          <div className="flex gap-1">
+            <span className="text-sm md:text-base truncate">{`${info.row.original.artist}`}</span>
+            <span className="block min-[450px]:hidden text-sm md:text-base truncate">{`- ${info.row.original.genre}`}</span>
+          </div>
         </div>
       ),
       header: "Title",
@@ -69,7 +127,7 @@ const Table = ({ songs }: TableProps) => {
       header: "Playtime",
     }),
 
-    columnHelper.accessor("soundcloudUrl", {
+    columnHelper.accessor("webUrl", {
       cell: ({ row }: { row: { original: song } }) => (
         <Modal data={row.original} color="dark" size={24} style="top-0 left-[-170px]" />
       ),
@@ -77,10 +135,23 @@ const Table = ({ songs }: TableProps) => {
     }),
   ];
 
+  const state = {
+    columnVisibility: {
+      artworkUrl: columnState.artworkUrl,
+      title: columnState.title,
+      genre: columnState.genre,
+      album: columnState.album,
+      type: columnState.type,
+      playtime: columnState.playtime,
+      webUrl: columnState.webUrl,
+    },
+  };
+
   const table = useReactTable({
     data: songs,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    state,
   });
 
   return (

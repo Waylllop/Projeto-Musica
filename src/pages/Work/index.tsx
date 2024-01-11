@@ -104,10 +104,10 @@ const Work = () => {
   }, [selectedGenreFilters, selectedTypeFilters, selectedAlbumFilters, data]);
 
   return (
-    <section className="mx-16 py-10 pt-12">
-      <h1 className="text-5xl mb-10 font-bold">Take a listen</h1>
-      <div className="grid grid-cols-[minmax(200px,80%)_1fr]">
-        <div className="w- min-h-[calc(100vh-352px)]">
+    <section className="md:mx-10 lg:mx-16 py-6 lg:py-10">
+      <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 lg:mb-10">Take a listen</h1>
+      <div className="min-[1100px]:grid grid-cols-[minmax(200px,80%)_1fr]">
+        <div className="min-h-[calc(100vh-352px)]">
           <Loader loading={loading} />
 
           {error ? <p className="text-3xl">Something went wrong, please try again later.</p> : null}
@@ -115,7 +115,7 @@ const Work = () => {
           {!loading && !error && data ? <Table songs={filteredSongList} /> : null}
         </div>
 
-        <div className="flex flex-col items-center gap-6 fixed right-[8%] top-32">
+        <div className="hidden min-[1100px]:flex flex-col items-center gap-6 fixed right-[5%] 2xl:right-[8%] top-32">
           <div className="border-2 border-dark rounded-3xl">
             <FilterButton
               title="Type"
