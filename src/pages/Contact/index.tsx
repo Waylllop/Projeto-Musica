@@ -1,12 +1,26 @@
-const Contact = () => {
+import { TypeAnimation } from "react-type-animation";
+
+interface ContactProps {
+  scrollY: number;
+}
+
+const Contact = ({ scrollY }: ContactProps) => {
   return (
     <section
       id="contact"
       className="scroll-smooth border-t-4 border-dark pb-6 md:pb-10 md:mx-10 md:mt-10 lg:pb-20 lg:mx-16 lg:mt-20"
     >
       <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold my-4 md:my-6 lg:my-10">Contact</h1>
-      <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-10">Have some idea in mind?</h2>
-      <div className="md:grid md:grid-cols-[minmax(400px,50%)_1fr] lg:grid-cols-[minmax(500px,50%)_1fr] md:gap-20 lg:gap-40">
+      {scrollY > 1250 ? (
+        <TypeAnimation
+          sequence={["Have some idea in mind?"]}
+          wrapper="span"
+          speed={35}
+          className="text-3xl md:text-5xl lg:text-6xl font-bold"
+        />
+      ) : <div className="h-12"></div>}
+
+      <div className="md:grid md:grid-cols-[minmax(400px,50%)_1fr] lg:grid-cols-[minmax(500px,50%)_1fr] md:gap-20 lg:gap-40 mt-10">
         <div className="text-dark text-xl md:text-2xl flex flex-col gap-6 md:gap-10">
           <p>
             You can send details about your project directly to{" "}

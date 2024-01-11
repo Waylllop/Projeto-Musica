@@ -257,7 +257,7 @@ const Player = () => {
             playing={songStates.playing}
           />
 
-          <div className="text-lg md:text-xl justify-self-end md:justify-self-center">
+          <div className="text-lg md:text-xl justify-self-end md:justify-self-start">
             <span>{secondsToMinutes(states.playedSeconds)}</span>
             <span> / </span>
             <span>{secondsToMinutes(states.duration)}</span>

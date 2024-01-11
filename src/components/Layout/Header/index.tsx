@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
 
 import MenuMobile from "./MenuMobile";
 import MenuLinks from "./MenuLinks";
@@ -30,13 +31,19 @@ const Header = () => {
   return (
     <>
       <div className="bg-dark flex justify-between px-0 py-4 fixed w-full z-20 lg:pr-32 lg:pl-16">
-        <NavLink
-          to="/home"
-          className="font-coustard text-primary text-3xl px-6 md:px-0 lg:hover:text-[#fcc46a] lg:text-4xl lg:duration-200"
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        <motion.div
+          className="box"
+          whileTap={{ scale: 1.3 }}
+          transition={{ type: "spring", stiffness: 400, damping: 17 }}
         >
-          LL
-        </NavLink>
+          <NavLink
+            to="/home"
+            className="font-coustard text-primary text-3xl px-6 md:px-0 lg:hover:text-[#fcc46a] lg:text-4xl lg:duration-200"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          >
+            LL
+          </NavLink>
+        </motion.div>
 
         <nav className="flex items-center">
           {windowWidth > 1024 ? <MenuLinks type="horizontal" closeMenu={() => {}} /> : null}
