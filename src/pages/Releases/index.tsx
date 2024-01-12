@@ -44,7 +44,7 @@ const Releases = () => {
   }, [data, setSongList]);
 
   return (
-    <section className="scroll-smooth mt-6 md:mx-10 md:mt-10 lg:mx-16 lg:mt-20 border-t-4 border-dark">
+    <section className="scroll-smooth mt-6 md:mx-10 md:mt-10 lg:mx-16 lg:mt-20 border-t-4 border-dark min-h-[450px]">
       <div className="flex flex-row items-center gap-4 justify-between my-4 md:my-6 lg:my-10">
         <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold">
           {language === "en" ? SectionWork.en : null}

@@ -31,7 +31,6 @@ const About = () => {
           whileInView="onscreen"
           viewport={{ once: true, amount: 0.5 }}
         >
-          <div className="splash" />
           <motion.div className="card" variants={cardVariants}>
             <div className="bg-dark ml-[-100px] mr-[-24px] md:mr-0 pl-[100px] pr-8 md:pl-24 md:pr-16 py-10 lg:pr-10 md:rounded-r-[48px]">
               <p className="text-2xl md:text-3xl lg:text-4xl text-light md:leading-[2.5rem] lg:leading-[3.5rem]">
