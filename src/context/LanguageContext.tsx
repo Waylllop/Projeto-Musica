@@ -15,6 +15,8 @@ const LanguageProvider = ({ children }: { children: React.ReactNode }) => {
     console.log(storedLanguage);
     if (storedLanguage) {
       setLanguage(storedLanguage);
+    } else {
+      setLanguage("en");
     }
   }, []);
 
