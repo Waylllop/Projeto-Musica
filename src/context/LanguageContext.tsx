@@ -8,7 +8,7 @@ interface LanguageType {
 const Language = createContext<LanguageType | undefined>(undefined);
 
 const LanguageProvider = ({ children }: { children: React.ReactNode }) => {
-  const [language, setLanguage] = useState<string>("en");
+  const [language, setLanguage] = useState<string>("");
 
   useEffect(() => {
     const storedLanguage = localStorage.getItem("language");
