@@ -6,6 +6,7 @@ import Table from "../../components/Table";
 import FilterButton from "../../components/Util/FilterButton";
 import Checkbox from "../../components/Util/FilterButton/Checkbox";
 import Loader from "../../components/Util/Loader";
+import Collapse from "../../components/Util/Collapse";
 
 const GET_SONGS_QUERY = gql`
   query GetSongs {
@@ -38,7 +39,7 @@ const Work = () => {
   const [selectedGenreOptions, setSelectedGenreOptions] = useState<number[]>([]);
   const [selectedGenreFilters, setSelectedGenreFilters] = useState<string[]>([]);
 
-  const [typeModalOpen, setTypeModalOpen] = useState<boolean>(true);
+  const [typeModalOpen, setTypeModalOpen] = useState<boolean>(false);
   const [selectedTypeOptions, setSelectedTypeOptions] = useState<number[]>([]);
   const [selectedTypeFilters, setSelectedTypeFilters] = useState<string[]>([]);
 
@@ -126,7 +127,7 @@ const Work = () => {
                 setAlbumModalOpen(false);
               }}
             />
-            {typeModalOpen ? (
+            <Collapse open={typeModalOpen}>
               <Checkbox
                 options={typeList}
                 selectedFilters={selectedTypeFilters}
@@ -134,7 +135,7 @@ const Work = () => {
                 setSelectedFilters={setSelectedTypeFilters}
                 setSelectedOptions={setSelectedTypeOptions}
               />
-            ) : null}
+            </Collapse>
           </div>
 
           <div className="border-2 border-dark rounded-3xl">
@@ -147,7 +148,7 @@ const Work = () => {
                 setAlbumModalOpen(false);
               }}
             />
-            {genreModalOpen ? (
+            <Collapse open={genreModalOpen}>
               <Checkbox
                 options={genreList}
                 selectedFilters={selectedGenreFilters}
@@ -155,7 +156,7 @@ const Work = () => {
                 setSelectedFilters={setSelectedGenreFilters}
                 setSelectedOptions={setSelectedGenreOptions}
               />
-            ) : null}
+            </Collapse>
           </div>
 
           <div className="border-2 border-dark rounded-3xl">
@@ -168,7 +169,7 @@ const Work = () => {
                 setGenreModalOpen(false);
               }}
             />
-            {albumModalOpen ? (
+            <Collapse open={albumModalOpen}>
               <Checkbox
                 options={albumList}
                 selectedFilters={selectedAlbumFilters}
@@ -176,7 +177,7 @@ const Work = () => {
                 setSelectedFilters={setSelectedAlbumFilters}
                 setSelectedOptions={setSelectedAlbumOptions}
               />
-            ) : null}
+            </Collapse>
           </div>
 
           {selectedGenreOptions.length > 0 || selectedTypeOptions.length > 0 || selectedAlbumOptions.length > 0 ? (

@@ -53,14 +53,43 @@ const Header = () => {
       {windowWidth < 1024 ? <MenuMobile /> : null}
 
       {!isSongsOpen ? (
-        <div className="py-10 px-6 md:px-0 md:grid md:grid-cols-12">
-          <div className=" flex flex-col gap-4 font-coustard text-primary pt-8 text-4xl md:text-5xl md:col-start-4 md:col-end-12 md:gap-8 lg:pt-10 lg:text-6xl ">
-            <h1>yLLop</h1>
-            <h1>Music &</h1>
-            <h1>Synthesis</h1>
+        <div className="py-10 px-6 md:px-0 md:grid md:grid-cols-12 h-[220px] md:h-[280px] lg:h-[360px]">
+          <div className="font-coustard text-primary pt-8 text-4xl md:text-5xl md:col-start-4 md:col-end-12 md:gap-8 lg:pt-10 lg:text-6xl ">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{
+                duration: 0.3,
+                delay: 0.4,
+              }}
+            >
+              <h1 className="mb-2 md:mb-4 lg:mb-8">yLLop</h1>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{
+                duration: 0.3,
+                delay: 0.6,
+              }}
+            >
+              <h1 className="mb-1 md:mb-3 lg:mb-7">Music &</h1>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{
+                duration: 0.3,
+                delay: 0.8,
+              }}
+            >
+              <h1 className="mb-1 md:mb-3 lg:mb-7">Sound Design</h1>
+            </motion.div>
+            {/* <AnimationWords /> */}
           </div>
         </div>
       ) : null}
+
       {isSongsOpen ? <div className="py-10"></div> : null}
     </>
   );
