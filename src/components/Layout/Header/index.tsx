@@ -58,7 +58,8 @@ const Header = () => {
             </NavLink>
           </motion.div>
           <button className="text-dark bg-light w-10 rounded-lg" onClick={handleLanguage}>
-            {language === "pt" ? "Pt" : "En"}
+            {language === "pt" ? "Pt" : null}
+            {language === "en" ? "En" : null}
           </button>
         </div>
 
