@@ -15,8 +15,10 @@ const Header = () => {
   const handleLanguage = () => {
     if (language === "pt") {
       setLanguage("en");
+      localStorage.setItem("language", "en");
     } else {
       setLanguage("pt");
+      localStorage.setItem("language", "pt");
     }
   };
 
