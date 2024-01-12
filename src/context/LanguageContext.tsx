@@ -12,7 +12,6 @@ const LanguageProvider = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     const storedLanguage = localStorage.getItem("language");
-    console.log(storedLanguage);
     if (storedLanguage) {
       setLanguage(storedLanguage);
     } else {

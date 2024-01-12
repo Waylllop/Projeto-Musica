@@ -1,13 +1,54 @@
 import { TypeAnimation } from "react-type-animation";
 import useLanguage from "../../Hooks/UseLanguage";
 import { Contact1, Contact2, Contact3, ContactSlogan, SectionContact } from "../../common/text";
+import { useEffect, useRef, useState } from "react";
 
-interface ContactProps {
-  scrollY: number;
-}
-
-const Contact = ({ scrollY }: ContactProps) => {
+const Contact = () => {
   const { language } = useLanguage();
+  const divRef = useRef(null);
+  const [animate, setAnimate] = useState(false);
+
+  function isElementInViewport(div: HTMLDivElement) {
+    const rect = div.getBoundingClientRect();
+    return (
+      rect.top >= 0 &&
+      rect.left >= 0 &&
+      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+  }
+
+  // @ts-expect-error expected any
+  function debounce(func, delay) {
+    let timeoutId: ReturnType<typeof setTimeout>;
+    // @ts-expect-error expected any
+    return function (...args) {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        // @ts-expect-error expected any
+        func.apply(this, args);
+      }, delay);
+    };
+  }
+
+  useEffect(() => {
+    function handleScroll() {
+      if (divRef.current) {
+        if (isElementInViewport(divRef.current)) {
+          setAnimate(true);
+        } else {
+          setAnimate(false);
+        }
+      }
+    }
+
+    const debouncedHandleScroll = debounce(handleScroll, 100);
+    window.addEventListener("scroll", debouncedHandleScroll);
+    handleScroll();
+    return () => {
+      window.removeEventListener("scroll", debouncedHandleScroll);
+    };
+  }, []);
 
   return (
     <section
@@ -18,16 +59,18 @@ const Contact = ({ scrollY }: ContactProps) => {
         {language === "en" ? SectionContact.en : null}
         {language === "pt" ? SectionContact.pt : null}
       </h1>
-      {scrollY > 1250 ? (
-        <TypeAnimation
-          sequence={[`${language === "en" ? ContactSlogan.en : ContactSlogan.pt}`, 3000]}
-          wrapper="span"
-          speed={35}
-          className="text-3xl md:text-5xl lg:text-6xl font-bold"
-        />
-      ) : (
-        <div className="h-12"></div>
-      )}
+      <div ref={divRef}>
+        {animate ? (
+          <TypeAnimation
+            sequence={[`${language === "en" ? ContactSlogan.en : ContactSlogan.pt}`, 3000]}
+            wrapper="span"
+            speed={35}
+            className="text-3xl md:text-5xl lg:text-6xl font-bold"
+          />
+        ) : (
+          <div className="h-12"></div>
+        )}
+      </div>
 
       <div className="md:grid md:grid-cols-[minmax(400px,50%)_1fr] lg:grid-cols-[minmax(500px,50%)_1fr] md:gap-20 lg:gap-40 mt-10">
         <div className="text-dark text-xl md:text-2xl flex flex-col gap-6 md:gap-10">
