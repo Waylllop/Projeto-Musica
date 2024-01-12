@@ -7,6 +7,8 @@ import FilterButton from "../../components/Util/FilterButton";
 import Checkbox from "../../components/Util/FilterButton/Checkbox";
 import Loader from "../../components/Util/Loader";
 import Collapse from "../../components/Util/Collapse";
+import useLanguage from "../../Hooks/UseLanguage";
+import { MusicAlbum, MusicGenre, MusicTitle, TableTitle } from "../../common/text";
 
 const GET_SONGS_QUERY = gql`
   query GetSongs {
@@ -32,6 +34,7 @@ const GET_SONGS_QUERY = gql`
 const Work = () => {
   const { loading, error, data } = useQuery(GET_SONGS_QUERY);
   const { setSongList } = useSong();
+  const { language } = useLanguage();
 
   const [filteredSongList, setFilteredSongList] = useState<song[]>([]);
 
@@ -106,7 +109,10 @@ const Work = () => {
 
   return (
     <section className="md:mx-10 lg:mx-16 py-6 lg:py-10">
-      <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 lg:mb-10">Take a listen</h1>
+      <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 lg:mb-10">
+        {language === "en" ? TableTitle.en : null}
+        {language === "pt" ? TableTitle.pt : null}
+      </h1>
       <div className="min-[1100px]:grid grid-cols-[minmax(200px,80%)_1fr]">
         <div className="min-h-[calc(100vh-352px)]">
           <Loader loading={loading} />
@@ -119,7 +125,7 @@ const Work = () => {
         <div className="hidden min-[1100px]:flex flex-col items-center gap-6 fixed right-[5%] 2xl:right-[8%] top-32">
           <div className="border-2 border-dark rounded-3xl">
             <FilterButton
-              title="Type"
+              title={`${language === "en" ? MusicTitle.en : MusicTitle.pt}`}
               isModalOpen={typeModalOpen}
               onClick={() => {
                 setTypeModalOpen(!typeModalOpen);
@@ -140,7 +146,7 @@ const Work = () => {
 
           <div className="border-2 border-dark rounded-3xl">
             <FilterButton
-              title="Genre"
+              title={`${language === "en" ? MusicGenre.en : MusicGenre.pt}`}
               isModalOpen={genreModalOpen}
               onClick={() => {
                 setGenreModalOpen(!genreModalOpen);
@@ -161,7 +167,7 @@ const Work = () => {
 
           <div className="border-2 border-dark rounded-3xl">
             <FilterButton
-              title="Album"
+              title={`${language === "en" ? MusicAlbum.en : MusicAlbum.pt}`}
               isModalOpen={albumModalOpen}
               onClick={() => {
                 setAlbumModalOpen(!albumModalOpen);

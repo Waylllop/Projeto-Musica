@@ -2,9 +2,12 @@ import { useEffect, useState } from "react";
 import About from "../About";
 import Contact from "../Contact";
 import Releases from "../Releases";
+import useLanguage from "../../Hooks/UseLanguage";
+import { Apresentation } from "../../common/text";
 
 const Home = () => {
   const [scrollY, setScrollY] = useState(window.innerWidth);
+  const { language } = useLanguage();
 
   useEffect(() => {
     function handleResize() {
@@ -19,8 +22,8 @@ const Home = () => {
     <>
       <section className="md:grid md:grid-cols-12 pt-6 md:pt-14 lg:pt-20">
         <p className="col-start-4 md:col-end-10 text-darkColor text-xl md:text-2xl lg:col-end-9 lg:text-3xl ">
-          Music producer, synthesis and sound designer, focused on electronic stuff. Based in São Paulo. Available for
-          remote-friendly freelance work.
+          {language === "en" ? Apresentation.en : null}
+          {language === "pt" ? Apresentation.pt : null}
         </p>
       </section>
 

@@ -4,11 +4,21 @@ import { motion } from "framer-motion";
 
 import MenuMobile from "./MenuMobile";
 import MenuLinks from "./MenuLinks";
+import useLanguage from "../../../Hooks/UseLanguage";
 
 const Header = () => {
   const location = useLocation();
   const [isSongsOpen, setIsSongsOpen] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const { language, setLanguage } = useLanguage();
+
+  const handleLanguage = () => {
+    if (language === "pt") {
+      setLanguage("en");
+    } else {
+      setLanguage("pt");
+    }
+  };
 
   useEffect(() => {
     if (location.pathname === "/work") {
@@ -31,19 +41,24 @@ const Header = () => {
   return (
     <>
       <div className="bg-dark flex justify-between px-0 py-4 fixed w-full z-20 lg:pr-32 lg:pl-16">
-        <motion.div
-          className="box"
-          whileTap={{ scale: 1.3 }}
-          transition={{ type: "spring", stiffness: 400, damping: 17 }}
-        >
-          <NavLink
-            to="/home"
-            className="font-coustard text-primary text-3xl px-6 md:px-0 lg:hover:text-[#fcc46a] lg:text-4xl lg:duration-200"
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        <div className="flex md:gap-6 items-center">
+          <motion.div
+            className="box"
+            whileTap={{ scale: 1.3 }}
+            transition={{ type: "spring", stiffness: 400, damping: 17 }}
           >
-            LL
-          </NavLink>
-        </motion.div>
+            <NavLink
+              to="/home"
+              className="font-coustard text-primary text-3xl px-6 md:px-0 lg:hover:text-[#fcc46a] lg:text-4xl lg:duration-200"
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            >
+              LL
+            </NavLink>
+          </motion.div>
+          <button className="text-dark bg-light w-10 rounded-lg" onClick={handleLanguage}>
+            {language === "pt" ? "Pt" : "En"}
+          </button>
+        </div>
 
         <nav className="flex items-center">
           {windowWidth > 1024 ? <MenuLinks type="horizontal" closeMenu={() => {}} /> : null}

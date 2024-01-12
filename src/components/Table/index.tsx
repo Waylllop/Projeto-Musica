@@ -7,7 +7,9 @@ import { song } from "../../common/interfices";
 import { Play } from "@phosphor-icons/react";
 import Modal from "../Util/Modal";
 import BarAnimation from "../Util/BarAnimation";
+import useLanguage from "../../Hooks/UseLanguage";
 import "./style.css";
+import { MusicAlbum, MusicGenre, MusicPlaytime, MusicTitle, MusicType } from "../../common/text";
 
 interface TableProps {
   songs: song[];
@@ -17,6 +19,7 @@ const Table = ({ songs }: TableProps) => {
   const { playingSong, songStates, setSongStates } = usePlayingSong();
   const { setSong } = useSong();
   const columnHelper = createColumnHelper<song>();
+  const { language } = useLanguage();
 
   // const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [columnState, setColumnState] = useState({
@@ -115,27 +118,27 @@ const Table = ({ songs }: TableProps) => {
           </div>
         </div>
       ),
-      header: "Title",
+      header: `${language === "en" ? MusicTitle.en : MusicTitle.pt}`,
     }),
 
     columnHelper.accessor("genre", {
       cell: (info) => <span className="mt-2 block w-24 truncate">{info.getValue()}</span>,
-      header: "Genre",
+      header: `${language === "en" ? MusicGenre.en : MusicGenre.pt}`,
     }),
 
     columnHelper.accessor("album", {
       cell: (info) => <span className="mt-2 block w-24 truncate">{info.getValue()}</span>,
-      header: "Album",
+      header: `${language === "en" ? MusicAlbum.en : MusicAlbum.pt}`,
     }),
 
     columnHelper.accessor("type", {
       cell: (info) => <span className="mt-2 block w-16 truncate">{info.getValue()}</span>,
-      header: "Type",
+      header: `${language === "en" ? MusicType.en : MusicType.pt}`,
     }),
 
     columnHelper.accessor("playtime", {
       cell: (info) => <span className="mt-2 block ">{secondsToMinutes(Number(info.getValue()))}</span>,
-      header: "Playtime",
+      header: `${language === "en" ? MusicPlaytime.en : MusicPlaytime.pt}`,
     }),
 
     columnHelper.accessor("webUrl", {

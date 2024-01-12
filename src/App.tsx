@@ -7,6 +7,7 @@ import { setContext } from "@apollo/client/link/context";
 import Home from "./pages/Home";
 import Layout from "./components/Layout";
 import Work from "./pages/Work";
+import { LanguageProvider } from "./context/LanguageContext";
 
 const httpLink = createHttpLink({
   uri: `${import.meta.env.VITE_HOST}`,
@@ -31,17 +32,19 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <SongProvider>
-          <SongPlayingProvider>
-            <Layout>
-              <Routes>
-                <Route path="/" element={<Navigate to="/home" />} />
-                <Route path="/home" element={<Home />} />
-                <Route path="/work" element={<Work />} />
-              </Routes>
-            </Layout>
-          </SongPlayingProvider>
-        </SongProvider>
+        <LanguageProvider>
+          <SongProvider>
+            <SongPlayingProvider>
+              <Layout>
+                <Routes>
+                  <Route path="/" element={<Navigate to="/home" />} />
+                  <Route path="/home" element={<Home />} />
+                  <Route path="/work" element={<Work />} />
+                </Routes>
+              </Layout>
+            </SongPlayingProvider>
+          </SongProvider>
+        </LanguageProvider>
       </Router>
     </ApolloProvider>
   );

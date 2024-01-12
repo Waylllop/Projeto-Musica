@@ -4,7 +4,7 @@ import { SongPlaying } from "../../context/SongPlaying";
 const usePlayingSong = () => {
   const context = useContext(SongPlaying);
   if (!context) {
-    throw new Error("useSong must be used within a SongProvider");
+    throw new Error("usePlayingSong must be used within a SongPlayingProvider");
   }
   return context;
 };

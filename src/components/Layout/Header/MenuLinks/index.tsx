@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
+import useLanguage from "../../../../Hooks/UseLanguage";
+import { Home, SectionAbout, SectionContact, Work } from "../../../../common/text";
 
 interface MenuLinksProps {
   type: "vertical" | "horizontal";
@@ -10,6 +12,7 @@ interface MenuLinksProps {
 const MenuLinks = ({ type, closeMenu }: MenuLinksProps) => {
   const location = useLocation();
   const [isSongsOpen, setIsSongsOpen] = useState(false);
+  const { language } = useLanguage();
 
   useEffect(() => {
     if (location.pathname === "/work") {
@@ -31,7 +34,8 @@ const MenuLinks = ({ type, closeMenu }: MenuLinksProps) => {
             closeMenu();
           }}
         >
-          Home
+          {language === "en" ? Home.en : null}
+          {language === "pt" ? Home.pt : null}
         </NavLink>
       </li>
       <li>
@@ -45,7 +49,8 @@ const MenuLinks = ({ type, closeMenu }: MenuLinksProps) => {
             closeMenu();
           }}
         >
-          Work
+          {language === "en" ? Work.en : null}
+          {language === "pt" ? Work.pt : null}
         </NavLink>
       </li>
       {!isSongsOpen ? (
@@ -60,7 +65,8 @@ const MenuLinks = ({ type, closeMenu }: MenuLinksProps) => {
               className="text-light cursor-pointer hover:text-[#fcc46a]"
               onClick={() => closeMenu()}
             >
-              About
+              {language === "en" ? SectionAbout.en : null}
+              {language === "pt" ? SectionAbout.pt : null}
             </ScrollLink>
           </li>
           <li>
@@ -73,7 +79,8 @@ const MenuLinks = ({ type, closeMenu }: MenuLinksProps) => {
               className="text-light cursor-pointer hover:text-[#fcc46a]"
               onClick={() => closeMenu()}
             >
-              Contact
+              {language === "en" ? SectionContact.en : null}
+              {language === "pt" ? SectionContact.pt : null}
             </ScrollLink>
           </li>
         </>
