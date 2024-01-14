@@ -52,6 +52,8 @@ const Player = () => {
         ...prevState,
         playing: !songStates.playing,
       }));
+    } else {
+      setSong(songList[0]);
     }
   };
 

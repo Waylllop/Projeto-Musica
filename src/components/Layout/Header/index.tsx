@@ -57,15 +57,17 @@ const Header = () => {
               LL
             </NavLink>
           </motion.div>
-          <button className="text-dark bg-light w-10 rounded-lg" onClick={handleLanguage}>
+        </div>
+
+        <div className="flex items-center gap-4">
+          <nav className="flex items-center">
+            {windowWidth > 1024 ? <MenuLinks type="horizontal" closeMenu={() => {}} /> : null}
+          </nav>
+          <button className="text-dark bg-light w-10 rounded-lg mr-16 md:mr-32 lg:mr-0" onClick={handleLanguage}>
             {language === "pt" ? "Pt" : null}
             {language === "en" ? "En" : null}
           </button>
         </div>
-
-        <nav className="flex items-center">
-          {windowWidth > 1024 ? <MenuLinks type="horizontal" closeMenu={() => {}} /> : null}
-        </nav>
       </div>
 
       {windowWidth < 1024 ? <MenuMobile /> : null}
@@ -103,7 +105,6 @@ const Header = () => {
             >
               <h1 className="mb-1 md:mb-3 lg:mb-7">Sound Design</h1>
             </motion.div>
-            {/* <AnimationWords /> */}
           </div>
         </div>
       ) : null}
