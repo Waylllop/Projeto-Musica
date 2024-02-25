@@ -10,8 +10,15 @@ const ModalDesign = () => {
   const menuRef = useRef<HTMLDivElement>(null);
 
   const handleModalOpen = (e: React.MouseEvent) => {
-    setModalOpen(!modalOpen);
-    e.stopPropagation();
+    const width = window.innerWidth;
+    if (width > 1024) {
+      setModalOpen(!modalOpen);
+      document.body.style.overflow = "hidden";
+      e.stopPropagation();
+    } else {
+      // @ts-expect-error expected null
+      window.open("https://www.youtube.com/watch?v=0CUIAfAiKIc", "_blank").focus();
+    }
     setSongStates((prevState) => ({
       ...prevState,
       playing: false,
@@ -27,6 +34,7 @@ const ModalDesign = () => {
         !menuRef.current.contains(event.target as Node)
       ) {
         setModalOpen(false);
+        document.body.style.overflow = "auto";
       }
     };
 
