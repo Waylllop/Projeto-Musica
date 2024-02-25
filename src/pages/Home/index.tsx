@@ -1,6 +1,7 @@
 import About from "../About";
 import Contact from "../Contact";
 import Releases from "../Releases";
+import Design from "../Design";
 import useLanguage from "../../Hooks/UseLanguage";
 import { Apresentation } from "../../common/text";
 
@@ -17,6 +18,7 @@ const Home = () => {
       </section>
 
       <Releases />
+      <Design />
       <About />
       <Contact />
     </>

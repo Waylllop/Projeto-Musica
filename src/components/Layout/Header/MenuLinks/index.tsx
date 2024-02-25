@@ -57,6 +57,19 @@ const MenuLinks = ({ type, closeMenu }: MenuLinksProps) => {
         <>
           <li>
             <ScrollLink
+              to="design"
+              spy={true}
+              smooth={true}
+              offset={-100}
+              duration={1000}
+              className="text-light cursor-pointer hover:text-[#fcc46a]"
+              onClick={() => closeMenu()}
+            >
+              Design
+            </ScrollLink>
+          </li>
+          <li>
+            <ScrollLink
               to="about"
               spy={true}
               smooth={true}

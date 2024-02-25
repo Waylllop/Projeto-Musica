@@ -4,8 +4,8 @@ export const Home = {
 };
 
 export const Work = {
-  pt: "Trabalhos",
-  en: "Work",
+  pt: "Músicas",
+  en: "Songs",
 };
 
 export const Apresentation = {
@@ -19,8 +19,8 @@ export const SectionWork = {
 };
 
 export const MoreButton = {
-  pt: "Ver Mais",
-  en: "See More",
+  pt: "Mais",
+  en: "More",
 };
 
 export const MusicTitle = {
@@ -76,6 +76,11 @@ export const Details2 = {
 export const Details3 = {
   pt: "Hoje, estou terminando a faculdade de Produção Musical, mas já estou ansioso para começar a trabalhar com outros artistas, produtores e desenvolvedores, ajudando a dar vida às ideias.",
   en: "Today, I'm finishing my college degree in Music Production, but I already feel eager to start working with other artists, producers, performers and developers to help bring ideas to life.",
+};
+
+export const sectionDesign = {
+  pt: "Design de Som",
+  en: "Sound Design",
 };
 
 export const SectionContact = {

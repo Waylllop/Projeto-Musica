@@ -52,7 +52,7 @@ const Releases = () => {
         </h1>
         <NavLink
           to="/work"
-          className="bg-dark text-light border-2 border-dark rounded-3xl mt-2 py-2 text-xl px-6 md:px-10  md:text-2xl lg:text-3xl lg:hover:text-[#FBB13C] lg:duration-200"
+          className="bg-dark text-light border-2 border-dark rounded-3xl mt-2 py-2 text-xl px-6  md:text-2xl lg:text-3xl lg:hover:text-[#FBB13C] lg:duration-200"
         >
           {language === "en" ? MoreButton.en : null}
           {language === "pt" ? MoreButton.pt : null}
