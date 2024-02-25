@@ -8,7 +8,7 @@ const Design = () => {
   return (
     <section id="design" className="scroll-smooth border-t-4 border-dark mt-6 md:mt-10 md:mx-10 lg:mx-16 lg:mt-20 ">
       <div className="flex flex-row items-center gap-4 justify-between my-4 md:my-6 lg:my-10">
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold my-4 md:my-6 lg:my-10">
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold">
           {language === "en" ? sectionDesign.en : null}
           {language === "pt" ? sectionDesign.pt : null}
         </h1>
