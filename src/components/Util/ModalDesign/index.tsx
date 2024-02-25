@@ -58,7 +58,7 @@ const ModalDesign = () => {
         <>
           <div className="fixed top-0 left-0 z-20 w-full h-full flex justify-center items-center bg-[rgba(0,0,0,0.8)]">
             <iframe
-              className="w-[90%] h-[90%] hidden lg:block"
+              className="w-[90%] h-[80%] hidden lg:block"
               src="https://www.youtube.com/embed/0CUIAfAiKIc?si=2X-N62ds5bv7EPkK"
               title="Sound Design"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
